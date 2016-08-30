@@ -1,0 +1,9 @@
+user:
+    resource: "@UserBundle/Resources/config/routing.yml"
+    prefix:   /
+
+todo:
+    resource: "@TodoBundle/Resources/config/routing.yml"
+    prefix:   /
+
+
