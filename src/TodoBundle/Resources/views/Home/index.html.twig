@@ -1,1 +1,6 @@
 {% extends "TodoBundle::layout.html.twig" %}
+
+
+{% block modals %}
+    {{ render(controller("TodoBundle:Layout:renderTask")) }}
+{% endblock modals %}

@@ -216,4 +216,119 @@ class Tache
     {
         return $this->codeCouleur;
     }
+
+    /**
+     * Set projet
+     *
+     * @param \TodoBundle\Entity\Projet $projet
+     * @return Tache
+     */
+    public function setProjet(\TodoBundle\Entity\Projet $projet = null)
+    {
+        $this->projet = $projet;
+
+        return $this;
+    }
+
+    /**
+     * Get projet
+     *
+     * @return \TodoBundle\Entity\Projet 
+     */
+    public function getProjet()
+    {
+        return $this->projet;
+    }
+
+    /**
+     * Set userAssigned
+     *
+     * @param \UserBundle\Entity\User $userAssigned
+     * @return Tache
+     */
+    public function setUserAssigned(\UserBundle\Entity\User $userAssigned = null)
+    {
+        $this->userAssigned = $userAssigned;
+
+        return $this;
+    }
+
+    /**
+     * Get userAssigned
+     *
+     * @return \UserBundle\Entity\User 
+     */
+    public function getUserAssigned()
+    {
+        return $this->userAssigned;
+    }
+
+    /**
+     * Set etat
+     *
+     * @param \TodoBundle\Entity\Etat $etat
+     * @return Tache
+     */
+    public function setEtat(\TodoBundle\Entity\Etat $etat = null)
+    {
+        $this->etat = $etat;
+
+        return $this;
+    }
+
+    /**
+     * Get etat
+     *
+     * @return \TodoBundle\Entity\Etat 
+     */
+    public function getEtat()
+    {
+        return $this->etat;
+    }
+
+    /**
+     * Set complexity
+     *
+     * @param \TodoBundle\Entity\Complexity $complexity
+     * @return Tache
+     */
+    public function setComplexity(\TodoBundle\Entity\Complexity $complexity = null)
+    {
+        $this->complexity = $complexity;
+
+        return $this;
+    }
+
+    /**
+     * Get complexity
+     *
+     * @return \TodoBundle\Entity\Complexity 
+     */
+    public function getComplexity()
+    {
+        return $this->complexity;
+    }
+
+    /**
+     * Set tacheParentes
+     *
+     * @param \TodoBundle\Entity\Tache $tacheParentes
+     * @return Tache
+     */
+    public function setTacheParentes(\TodoBundle\Entity\Tache $tacheParentes = null)
+    {
+        $this->tacheParentes = $tacheParentes;
+
+        return $this;
+    }
+
+    /**
+     * Get tacheParentes
+     *
+     * @return \TodoBundle\Entity\Tache 
+     */
+    public function getTacheParentes()
+    {
+        return $this->tacheParentes;
+    }
 }
