@@ -10,8 +10,9 @@ class HomeController extends Controller
 
     public function indexAction(){
 
-        die('lalala');
-        return new Response();
+        return $this->render("TodoBundle:Home:index.html.twig",array(
+
+        ));
 
     }
 

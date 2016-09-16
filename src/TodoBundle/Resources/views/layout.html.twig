@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Taches</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
+    {% stylesheets 'bundles/todo/css/*' filter='cssrewrite' %}
+        <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+    {% block stylesheets %}{% endblock %}
+</head>
+
+<body>
+    {% block header %}
+        <header>
+            <nav class="deep-orange">
+                <div class="nav-wrapper">
+                    <a href="#" class="brand-logo">Logo</a>
+                    <ul id="nav-mobile" class="right hide-on-med-and-down">
+                        <li><a href="">Sass</a></li>
+                        <li><a href="">Components</a></li>
+                        <li><a href="">JavaScript</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+    {% endblock header %}
+
+    {% block content %}
+        {% include "TodoBundle::colonnes.html.twig" %}
+    {% endblock content %}
+
+    {% block footer %}{% endblock footer %}
+</body>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
+
+    {% javascripts '@TodoBundle/Resources/public/js/*' %}
+        <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+    {% block javascripts %}{% endblock javascripts %}
+
+</html>

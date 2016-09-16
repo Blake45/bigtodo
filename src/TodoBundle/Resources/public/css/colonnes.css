@@ -1,0 +1,19 @@
+.col{
+    min-height: 100%;
+}
+@font-face {
+    font-family: jura;
+    src: url('../fonts/Jura-DemiBold.ttf');
+}
+h3{
+    font-family: jura;
+    font-size:18px;
+}
+.tache{
+    width:95%;
+    min-height:80px;
+}
+.header.colonne a,.header.colonne h3{
+    display: inline-block;
+    width: 50%;
+}
