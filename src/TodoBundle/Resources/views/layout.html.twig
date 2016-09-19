@@ -37,7 +37,11 @@
     {% block modals %}{% endblock modals %}
 </body>
 
-    {% javascripts '@TodoBundle/Resources/public/js/*' %}
+    {% javascripts
+        '@TodoBundle/Resources/public/js/jquery-3.1.0.min.js'
+        '@TodoBundle/Resources/public/js/jquery-ui.min.js'
+        '@TodoBundle/Resources/public/js/colonne.js'
+    %}
         <script src="{{ asset_url }}"></script>
     {% endjavascripts %}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
