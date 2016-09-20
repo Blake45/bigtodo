@@ -19,7 +19,16 @@
                 <div class="nav-wrapper">
                     <a href="#" class="brand-logo">Logo</a>
                     <ul id="nav-mobile" class="right hide-on-med-and-down">
-                        <li><a href="">Sass</a></li>
+                        <li>
+                            {% if projets is not null %}
+                                <select name="projet">
+                                    {% for projet in projets %}
+                                    <option value="{{ projet.id }}">{{ projet.nom }}</option>
+                                    {% endfor %}
+                                </select>
+                            {% endif %}
+                            <a href="{{ url("todo_add_projet") }}">{% trans %}New Project{% endtrans %}</a>
+                        </li>
                         <li><a href="">Components</a></li>
                         <li><a href="">JavaScript</a></li>
                     </ul>

@@ -9,19 +9,19 @@
                 </div>
                 <div class="form-control">
                     {{ form_label(form.tempsPrevu) }}
-                    {{ form_widget(form.tempsPrevu) }}
+                    {{ form_widget(form.tempsPrevu,{'attr':{'class':'materialize'}}) }}
                 </div>
                 <div class="form-control">
                     {{ form_label(form.projet) }}
-                    {{ form_widget(form.projet) }}
+                    {{ form_widget(form.projet,{'attr':{'class':'materialize'}}) }}
                 </div>
                 <div class="form-control">
                     {{ form_label(form.complexity) }}
-                    {{ form_widget(form.complexity) }}
+                    {{ form_widget(form.complexity,{'attr':{'class':'materialize'}}) }}
                 </div>
                 <div class="form-control">
                     {{ form_label(form.tacheParentes) }}
-                    {{ form_widget(form.tacheParentes) }}
+                    {{ form_widget(form.tacheParentes,{'attr':{'class':'materialize'}}) }}
                 </div>
             {{ form_end(form) }}
         </p>

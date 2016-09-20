@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
-    $('select').material_select();
+    $('select.materialize').material_select();
 
     //todo creation of tache
     $('#add-task').click(function(e){
@@ -10,15 +10,25 @@ $(document).ready(function(){
     //todo glisser tache
     $( ".draggable" ).draggable({
         revert:function(event) {
-            console.log(event);
+
             if(!event.hasClass('yes')){
                 return true;
             }
         }
     });
+
+
     $(".droppable").droppable({
         hoverClass: "z-depth-1",
-        accept: ".draggable"
+        accept: ".draggable",
+        drop: function(event,ui){
+
+            var task = ui.draggable;
+            var colonne = event.target;
+            /*todo var position = task.position();var lastY = position.top;var lastX = position.left;*/
+            task.removeAttr('style');
+            task.appendTo(colonne);
+        }
     });
 
 });

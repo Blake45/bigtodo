@@ -1,3 +1,13 @@
 todo_homepage:
     path:     /
     defaults: { _controller: TodoBundle:Home:index }
+todo_add_new_task:
+    path:    /ajouter/nouvelle-tache/
+    defaults: { _controller: TodoBundle:Task:new_taskPost }
+    requirements:
+        _method: POST
+todo_add_projet:
+    path: /ajouter/projet
+    defaults: { _controller: TodoBundle:Projet:addProjet }
+    requirements:
+        _method: GET|POST

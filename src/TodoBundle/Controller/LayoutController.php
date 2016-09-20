@@ -18,7 +18,9 @@ class LayoutController extends Controller
 
     public function renderTaskAction(){
 
-        $form = $this->createForm(new TacheType(),new Tache());
+        $form = $this->createForm(new TacheType(),new Tache(),array(
+            "action"=>$this->generateUrl("todo_add_new_task")
+        ));
         return $this->render("TodoBundle:Modal:new_task.html.twig",array(
            'form'=>$form->createView()
         ));
