@@ -1,0 +1,5 @@
+<ul id='drop_projets' class='dropdown-content'>
+    {% for projet in projets %}
+        <li value="{{ projet.id }}">{{ projet.nom }}</li>
+    {% endfor %}
+</ul>

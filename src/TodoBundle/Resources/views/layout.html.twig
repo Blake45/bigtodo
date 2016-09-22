@@ -20,14 +20,8 @@
                     <a href="#" class="brand-logo">Logo</a>
                     <ul id="nav-mobile" class="right hide-on-med-and-down">
                         <li>
-                            {% if projets is not null %}
-                                <select name="projet">
-                                    {% for projet in projets %}
-                                    <option value="{{ projet.id }}">{{ projet.nom }}</option>
-                                    {% endfor %}
-                                </select>
-                            {% endif %}
-                            <a href="{{ url("todo_add_projet") }}">{% trans %}New Project{% endtrans %}</a>
+                            <a class='dropdown-button' data-activates='drop_projets' href="{{ url("todo_add_projet") }}">{% trans %}New Project{% endtrans %}</a>
+                            {{ render(controller("TodoBundle:Projet:showProjets")) }}
                         </li>
                         <li><a href="">Components</a></li>
                         <li><a href="">JavaScript</a></li>

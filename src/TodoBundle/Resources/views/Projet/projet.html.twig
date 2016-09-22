@@ -4,7 +4,15 @@
 {% block content %}
     <div class="container row">
         <div class="s12 m12 l12">
-
+            {{ form_start(form) }}
+                <div>
+                    {{ form_label(form.nom) }}
+                    {{ form_widget(form.nom) }}
+                </div>
+                <div>
+                    <button class="btn" type="submit">{% trans %}Create{% endtrans %}</button>
+                </div>
+            {{ form_end(form) }}
         </div>
     </div>
 {% endblock content %}
