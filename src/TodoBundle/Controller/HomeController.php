@@ -11,7 +11,11 @@ class HomeController extends Controller
 
     public function indexAction(){
 
-        return $this->render("TodoBundle:Home:index.html.twig",array());
+        $taches = $this->get('todo.handle_tache')->getTachesByProjet();
+
+        return $this->render("TodoBundle:Home:index.html.twig",array(
+            "taches"=>$taches
+        ));
 
     }
 

@@ -25,7 +25,9 @@ class ProjetController extends Controller
         $form->handleRequest($request);
         if($form->isValid()){
 
-            $this->get('todo.handle_projet')->saveProjet($projet);
+            if( $this->get('todo.handle_projet')->saveProjet($projet,$request) ){
+                return $this->redirect($this->generateUrl("todo_homepage"));
+            }
         }
 
         return $this->render("TodoBundle:Projet:projet.html.twig",array(

@@ -15,21 +15,37 @@
 <body>
     {% block header %}
         <header>
-            <nav class="deep-orange">
-                <div class="nav-wrapper">
-                    <a href="#" class="brand-logo">Logo</a>
-                    <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <nav class="grey lighten-2">
+                <div class="nav-wrapper container-wide">
+                    {#<a href="#" class="brand-logo">Logo</a>#}
+                    <ul id="nav-mobile" class="left hide-on-med-and-down">
                         <li>
                             <a class='dropdown-button' data-activates='drop_projets' href="{{ url("todo_add_projet") }}">{% trans %}New Project{% endtrans %}</a>
                             {{ render(controller("TodoBundle:Projet:showProjets")) }}
                         </li>
-                        <li><a href="">Components</a></li>
-                        <li><a href="">JavaScript</a></li>
+                        <li><a href="{{ url("user_login") }}">Connexion</a></li>
+                        <li><a href="{{ url("user_register") }}">Inscription</a></li>
                     </ul>
                 </div>
             </nav>
         </header>
     {% endblock header %}
+
+    {% block flashMessages %}
+        {% if app.session.flashBag.has('success') %}
+            <div class="z-depth-1 card-panel light-green">
+                {% for msg in app.session.flashBag.get('success') %}
+                    {{ msg }}
+                {% endfor %}
+            </div>
+        {% elseif app.session.flashBag.has('error') %}
+            <div class="z-depth-1 card-panel red accent-1">
+                {% for msg in app.session.flashBag.get('error') %}
+                    {{ msg }}
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endblock flashMessages %}
 
     {% block content %}
         {% include "TodoBundle::colonnes.html.twig" %}

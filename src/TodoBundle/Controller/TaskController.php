@@ -19,10 +19,10 @@ class TaskController extends Controller
 
         $form->handleRequest($request);
         if($form->isValid()){
-
+            $this->get('todo.handle_tache')->saveTache($task, $request);
         }
 
-        return $this->redirect($this->generateUrl(""));
+        return $this->redirect($this->generateUrl("todo_homepage"));
 
     }
 

@@ -1,0 +1,26 @@
+{% extends "TodoBundle::layout.html.twig" %}
+
+{% trans_default_domain 'security' %}
+
+{% block content %}
+
+    {% if error is not null %}
+        <p>
+            {{ error.message }}
+        </p>
+    {% endif %}
+    <div class="container row">
+        <section class="section valign-center">
+            <h1>Connexion</h1>
+            <form class="col s12 m12 l12" action="{{ path('user_login_check') }}" method="post">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="my_login" value="{{ last_username }}" />
+
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="my_secret" />
+
+                <button class="btn" type="submit">login</button>
+            </form>
+        </section>
+    </div>
+{% endblock %}

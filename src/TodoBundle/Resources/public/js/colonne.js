@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
-    $('select.materialize').material_select();
+    $('select').material_select();
 
     //todo creation of tache
     $('#add-task').click(function(e){
@@ -17,7 +17,6 @@ $(document).ready(function(){
         }
     });
 
-
     $(".droppable").droppable({
         hoverClass: "z-depth-1",
         accept: ".draggable",
@@ -31,13 +30,11 @@ $(document).ready(function(){
         }
     });
 
-
     $('.dropdown-button').dropdown({
             inDuration: 300,
             outDuration: 225,
             hover: true,
             belowOrigin: true
-        }
-    );
+    });
 
 });

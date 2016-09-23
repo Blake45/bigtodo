@@ -15,11 +15,27 @@ class TacheType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nom')
-            ->add('tempsPrevu')
-            ->add('projet')
-            ->add('complexity')
-            ->add('tacheParentes')
+            ->add('nom','text')
+            ->add('tempsPrevu','number',array(
+                'required'=>true,
+                'scale'=>1
+            ))
+            ->add('description','textarea')
+            ->add('projet','entity',array(
+                'required'=>false,
+                'class'=>'TodoBundle:Projet',
+                'property'=>'nom'
+            ))
+            ->add('complexity','entity',array(
+                'required'=>false,
+                'class'=>'TodoBundle:Complexity',
+                'property'=>'nom'
+            ))
+            ->add('tacheParentes','entity',array(
+                'required'=>false,
+                'class'=>'TodoBundle:Tache',
+                'property'=>'nom'
+            ))
         ;
     }
     

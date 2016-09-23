@@ -1,3 +1,15 @@
-user_homepage:
-    path:     /hello/{name}
-    defaults: { _controller: UserBundle:Default:index }
+user_login:
+    path:     /connexion
+    defaults: { _controller: UserBundle:Security:login }
+    requirements:
+        _method: GET
+user_login_check:
+    path:    /connexion
+    defaults: { _controller: UserBundle:Security:loginCheck }
+    requirements:
+        _method: POST
+user_register:
+    path: /inscription
+    defaults:  { _controller: UserBundle:Security:register }
+    requirements:
+        _method: GET|POST

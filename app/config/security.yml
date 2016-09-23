@@ -1,24 +1,40 @@
-# To get started with security, check out the documentation:
-# http://symfony.com/doc/current/book/security.html
 security:
 
-    # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
+    role_hierarchy:
+        ROLE_CHEF: ROLE_DEV
+        ROLE_COM: ROLE_DEV
+        ROLE_ADMIN:
+            - ROLE_DEV
+            - ROLE_CHEF
+            - ROLE_COM
+            - ROLE_ALLOWED_TO_SWITCH
+    encoders:
+        UserBundle\Entity\User: bcrypt
+
     providers:
-        in_memory:
-            memory: ~
+        developpers:
+            chain:
+                providers: [ email ]
+        email:
+            entity: { class: UserBundle:User, property: email }
 
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
-
-        main:
+        todo_app:
+            pattern: ^/
+            provider: developpers
             anonymous: ~
-            # activate different ways to authenticate
-
-            # http_basic: ~
-            # http://symfony.com/doc/current/book/security.html#a-configuring-how-your-users-will-authenticate
-
-            # form_login: ~
-            # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
+            switch_user: ~
+            form_login:
+                login_path: user_login
+                check_path: user_login_check
+                username_parameter: my_login
+                password_parameter: my_secret
+                default_target_path: todo_homepage
+                always_use_default_target_path: true
+            logout:
+                path: user_logout
+                target: todo_homepage

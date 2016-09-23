@@ -6,3 +6,14 @@ services:
         class: TodoBundle\Service\Projet
         arguments:
             - "@doctrine.orm.entity_manager"
+
+    todo.handle_tache:
+        class: TodoBundle\Service\Tache
+        arguments:
+            - "@doctrine.orm.entity_manager"
+    todo.user_register:
+        class: TodoBundle\Service\RegisterUser
+        arguments:
+            - '@security.secure_random'
+            - '@security.password_encoder'
+            - '@doctrine.orm.entity_manager'

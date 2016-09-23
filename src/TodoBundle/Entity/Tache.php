@@ -31,16 +31,16 @@ class Tache
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="temps_passes", type="datetime")
+     * @ORM\Column(name="temps_passes", type="integer")
      */
-    private $tempsPasses;
+    private $tempsPasses = 0;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="temps_prevu", type="datetime")
+     * @ORM\Column(name="temps_prevu", type="integer")
      */
-    private $tempsPrevu;
+    private $tempsPrevu = 0;
 
     /**
      * @var \DateTime
@@ -54,12 +54,12 @@ class Tache
      *
      * @ORM\Column(name="code_couleur", type="string", length=255)
      */
-    private $codeCouleur;
+    private $codeCouleur = "#b3e5fc";
 
 
     /**
      * @ORM\ManyToOne(targetEntity="Projet", inversedBy="taches")
-     * @ORM\JoinColumn(name="id_projet", referencedColumnName="id")
+     * @ORM\JoinColumn(name="id_projet", referencedColumnName="id", nullable=true)
      */
     private $projet;
 
@@ -69,8 +69,11 @@ class Tache
      */
     private $userAssigned;
 
-
-    private $users;
+    /**
+     * @ORM\OneToOne(targetEntity="\UserBundle\Entity\User", inversedBy="tachesCrees")
+     * @ORM\JoinColumn(name="id_user_creator", referencedColumnName="id")
+     */
+    private $user;
 
     /**
      * @ORM\ManyToOne(targetEntity="Etat")
@@ -90,6 +93,14 @@ class Tache
      * @ORM\JoinColumn(name="id_tache_parente", referencedColumnName="id")
      */
     private $tacheParentes;
+
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="text", nullable=true)
+     */
+    private $description;
 
 
     /**
@@ -330,5 +341,51 @@ class Tache
     public function getTacheParentes()
     {
         return $this->tacheParentes;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     * @return Tache
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string 
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \UserBundle\Entity\User $user
+     * @return Tache
+     */
+    public function setUser(\UserBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \UserBundle\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }

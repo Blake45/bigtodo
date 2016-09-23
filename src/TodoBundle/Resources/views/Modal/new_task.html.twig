@@ -8,25 +8,29 @@
                     {{ form_widget(form.nom) }}
                 </div>
                 <div class="form-control">
+                    {{ form_label(form.description) }}
+                    {{ form_widget(form.description,{'attr':{'class':'materialize-textarea'}}) }}
+                </div>
+                <div class="form-control">
                     {{ form_label(form.tempsPrevu) }}
-                    {{ form_widget(form.tempsPrevu,{'attr':{'class':'materialize'}}) }}
+                    {{ form_widget(form.tempsPrevu,{'attr':{'type':'number','min':'0'}}) }}
                 </div>
                 <div class="form-control">
                     {{ form_label(form.projet) }}
-                    {{ form_widget(form.projet,{'attr':{'class':'materialize'}}) }}
+                    {{ form_widget(form.projet,{'attr':{'class':'browser-default'}}) }}
                 </div>
                 <div class="form-control">
                     {{ form_label(form.complexity) }}
-                    {{ form_widget(form.complexity,{'attr':{'class':'materialize'}}) }}
+                    {{ form_widget(form.complexity,{'attr':{'class':'browser-default'}}) }}
                 </div>
                 <div class="form-control">
                     {{ form_label(form.tacheParentes) }}
-                    {{ form_widget(form.tacheParentes,{'attr':{'class':'materialize'}}) }}
+                    {{ form_widget(form.tacheParentes,{'attr':{'class':'browser-default'}}) }}
+                </div>
+                <div class="form-control">
+                    <button class="btn" type="submit">{% trans %}Create{% endtrans %}</button>
                 </div>
             {{ form_end(form) }}
         </p>
-    </div>
-    <div class="modal-footer">
-        <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
     </div>
 </div>
