@@ -13,7 +13,8 @@
                 </div>
                 <div class="form-control">
                     {{ form_label(form.tempsPrevu) }}
-                    {{ form_widget(form.tempsPrevu,{'attr':{'type':'number','min':'0'}}) }}
+                    <input type="time" id="tempsPrevu" data-autoclose="true"/>
+                    {{ form_widget(form.tempsPrevu,{'attr':{'type':'number','min':'0','data-autoclose':'true'}}) }}
                 </div>
                 <div class="form-control">
                     {{ form_label(form.projet) }}

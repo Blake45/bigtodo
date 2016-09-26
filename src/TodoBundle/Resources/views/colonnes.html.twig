@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col s12 m3 l3 droppable">
+    <div class="col s12 m3 l3 droppable" data-etat="a_faire">
         <div class="header colonne">
             <button class="btn-floating waves-effect orange darken-2" id="add-task"><i class="material-icons small library_add">add</i></button>
             <h3>Taches</h3>
@@ -7,6 +7,10 @@
         {% for tache in taches %}
             <div class="card draggable">
                 <div class="card-content">
+                    <span class="right">
+                        <i class="fa fa-clock-o" aria-hidden="true"></i>
+                        {{ tache.tempsPrevu }}
+                    </span>
                     <span class="card-title">{{ tache.nom }}</span>
                     <p class="truncate">{{ tache.description }}</p>
                 </div>
@@ -14,17 +18,17 @@
         {% endfor %}
 
     </div>
-    <div class="col s12 m3 l3 droppable">
+    <div class="col s12 m3 l3 droppable" data-etat="en_cours">
         <div class="header colonne">
             <h3>Taches en cours</h3>
         </div>
     </div>
-    <div class="col s12 m3 l3 droppable">
+    <div class="col s12 m3 l3 droppable" data-etat="finis">
         <div class="header colonne">
             <h3>Taches terminé</h3>
         </div>
     </div>
-    <div class="col s12 m3 l3 droppable">
+    <div class="col s12 m3 l3 droppable" data-etat="attente">
         <div class="header colonne">
             <h3>Taches en attente</h3>
         </div>

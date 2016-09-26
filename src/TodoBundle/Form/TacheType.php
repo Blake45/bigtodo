@@ -16,9 +16,8 @@ class TacheType extends AbstractType
     {
         $builder
             ->add('nom','text')
-            ->add('tempsPrevu','number',array(
-                'required'=>true,
-                'scale'=>1
+            ->add('tempsPrevu','hidden',array(
+                'required'=>true
             ))
             ->add('description','textarea')
             ->add('projet','entity',array(

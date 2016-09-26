@@ -24,9 +24,23 @@ $(document).ready(function(){
 
             var task = ui.draggable;
             var colonne = event.target;
-            /*todo var position = task.position();var lastY = position.top;var lastX = position.left;*/
             task.removeAttr('style');
             task.appendTo(colonne);
+
+            switch ($(colonne).attr('data-etat')){
+                case "a_faire":
+                    console.log("a faire");
+                break;
+                case "en_cours":
+                    console.log("en_cours");
+                break;
+                case "finis":
+                    console.log("finis");
+                break;
+                case "attente":
+                    console.log("attente");
+                break;
+            }
         }
     });
 
@@ -35,6 +49,23 @@ $(document).ready(function(){
             outDuration: 225,
             hover: true,
             belowOrigin: true
+    });
+
+    $('#tempsPrevu').clockpicker({
+        afterDone: function() {
+            var duration = $('#tempsPrevu').val();
+            var regex = /[0-9]*:[0-9]*/;
+            var value = 0;
+
+            if(regex.test(duration)){
+                duration = duration.split(':');
+                value = parseInt(duration[0])*3600+parseInt(duration[1])*60;
+            }else{
+                throw Error("The value must match HH::mm");
+            }
+
+            $('#todobundle_tache_tempsPrevu').val(value);
+        }
     });
 
 });

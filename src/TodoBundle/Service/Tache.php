@@ -12,19 +12,24 @@ use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\ORMException;
 use Symfony\Component\HttpFoundation\Request;
 use TodoBundle\Entity\Tache as EntityTache;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 class Tache
 {
     private $em;
+    private $token;
 
-    public function __construct(EntityManagerInterface $em){
+    public function __construct(EntityManagerInterface $em,TokenStorageInterface $token){
         $this->em = $em;
+        $this->token = $token;
     }
 
     public function saveTache(EntityTache $tache, Request $request){
 
         try{
+            $user = $this->token->getToken()->getUser();
             $tache->setDateCreation(new \DateTime());
+            $tache->setUser($user);
             $this->em->persist($tache);
             $this->em->flush();
 

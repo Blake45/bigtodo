@@ -11,6 +11,7 @@ services:
         class: TodoBundle\Service\Tache
         arguments:
             - "@doctrine.orm.entity_manager"
+            - "@security.token_storage"
     todo.user_register:
         class: TodoBundle\Service\RegisterUser
         arguments:

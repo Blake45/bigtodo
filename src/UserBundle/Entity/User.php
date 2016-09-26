@@ -57,6 +57,12 @@ class User implements UserInterface
      */
     private $password;
 
+    /**
+     * @var
+     * @ORM\OneToMany(targetEntity="TodoBundle\Entity\Tache", mappedBy="user")
+     */
+    private $tachesCrees;
+
 
     /**
      * Get id
@@ -201,5 +207,45 @@ class User implements UserInterface
      */
     public function eraseCredentials(){
 
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->tachesCrees = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add tachesCrees
+     *
+     * @param \UserBundle\Entity\Tache $tachesCrees
+     * @return User
+     */
+    public function addTachesCree(\UserBundle\Entity\Tache $tachesCrees)
+    {
+        $this->tachesCrees[] = $tachesCrees;
+
+        return $this;
+    }
+
+    /**
+     * Remove tachesCrees
+     *
+     * @param \UserBundle\Entity\Tache $tachesCrees
+     */
+    public function removeTachesCree(\UserBundle\Entity\Tache $tachesCrees)
+    {
+        $this->tachesCrees->removeElement($tachesCrees);
+    }
+
+    /**
+     * Get tachesCrees
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getTachesCrees()
+    {
+        return $this->tachesCrees;
     }
 }
