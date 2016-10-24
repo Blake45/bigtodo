@@ -33,9 +33,8 @@ $(document).ready(function(){
                 break;
                 case "en_cours":
                     //todo
-                    console.log(url_changement_etat);
-                    var url = url_changement_etat.replace('0',task.data('id')).replace('state',$(colonne).data('etat'));
-                    console.log(url);
+                    var url = url_changement_etat.replace('0',task.data('id')).replace('id_etat',$(colonne).data('etat'));
+                    tacheIsDoing();
                 break;
                 case "finis":
                     console.log("finis");

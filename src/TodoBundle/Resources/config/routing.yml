@@ -17,7 +17,7 @@ todo_create_etat:
     requirements:
             _method: GET|POST
 todo_changement_colonne:
-    path:  changement-colonne/tache/{tache}/etat/{etat}
-    defaults: { _controller: TodoBundle:Task:deplacementTache, tache:0,etat:"state" }
+    path:  changement-colonne/tache/{tache}/etat/{state}/
+    defaults: { _controller: TodoBundle:Task:deplacementTache, state:id_etat,tache:0 }
     requirements:
         tache: \d

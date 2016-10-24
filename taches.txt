@@ -1,7 +1,5 @@
 Taches:
 
-    Etat:
-        formulaire creation etat
 	Card Taches :
 		Déplacement ==> changement de statut et de couleur
 		Affichage du temps à améliorer => en jours, en heures , pas en secondes
@@ -26,3 +24,5 @@ Taches:
 Taches faites:
 
 	Creation
+	Etat:
+        formulaire creation etat
