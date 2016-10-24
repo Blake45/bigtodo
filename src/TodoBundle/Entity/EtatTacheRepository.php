@@ -12,4 +12,29 @@ use Doctrine\ORM\EntityRepository;
  */
 class EtatTacheRepository extends EntityRepository
 {
+
+    /**
+     * Return the last etat of a tache
+     * @param Tache $tache
+     * @return int|Etat
+     */
+    public function getPrevEtat(Tache $tache){
+
+        $etat = $this->createQueryBuilder("etattache")
+                ->select("etattache.etat")
+                ->where("etattache.id_tache = :id_tache")
+                ->orderBy("etattache.id",'DESC')
+                ->getFirstResult();
+
+        if(is_null($etat)){
+            return $this->getEntityManager()
+                    ->getRepository("TodoBundle:Etat")
+                    ->findBy(array(
+                        "nom"=>"A faire"
+                    ));
+        }
+        return $etat;
+
+    }
+
 }

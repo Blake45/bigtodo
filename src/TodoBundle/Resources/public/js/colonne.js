@@ -32,7 +32,10 @@ $(document).ready(function(){
                     console.log("a faire");
                 break;
                 case "en_cours":
-                    console.log("en_cours");
+                    //todo
+                    console.log(url_changement_etat);
+                    var url = url_changement_etat.replace('0',task.data('id')).replace('state',$(colonne).data('etat'));
+                    console.log(url);
                 break;
                 case "finis":
                     console.log("finis");
@@ -67,5 +70,7 @@ $(document).ready(function(){
             $('#todobundle_tache_tempsPrevu').val(value);
         }
     });
+
+    $(".button-collapse").sideNav();
 
 });

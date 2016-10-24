@@ -70,7 +70,7 @@ class Tache
     private $userAssigned;
 
     /**
-     * @ORM\OneToOne(targetEntity="\UserBundle\Entity\User", inversedBy="tachesCrees")
+     * @ORM\ManyToOne(targetEntity="\UserBundle\Entity\User", inversedBy="tachesCrees")
      * @ORM\JoinColumn(name="id_user_creator", referencedColumnName="id")
      */
     private $user;

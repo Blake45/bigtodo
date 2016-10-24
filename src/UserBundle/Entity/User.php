@@ -217,12 +217,22 @@ class User implements UserInterface
     }
 
     /**
+     * Get tachesCrees
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getTachesCrees()
+    {
+        return $this->tachesCrees;
+    }
+
+    /**
      * Add tachesCrees
      *
-     * @param \UserBundle\Entity\Tache $tachesCrees
+     * @param \TodoBundle\Entity\Tache $tachesCrees
      * @return User
      */
-    public function addTachesCree(\UserBundle\Entity\Tache $tachesCrees)
+    public function addTachesCree(\TodoBundle\Entity\Tache $tachesCrees)
     {
         $this->tachesCrees[] = $tachesCrees;
 
@@ -232,20 +242,10 @@ class User implements UserInterface
     /**
      * Remove tachesCrees
      *
-     * @param \UserBundle\Entity\Tache $tachesCrees
+     * @param \TodoBundle\Entity\Tache $tachesCrees
      */
-    public function removeTachesCree(\UserBundle\Entity\Tache $tachesCrees)
+    public function removeTachesCree(\TodoBundle\Entity\Tache $tachesCrees)
     {
         $this->tachesCrees->removeElement($tachesCrees);
-    }
-
-    /**
-     * Get tachesCrees
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getTachesCrees()
-    {
-        return $this->tachesCrees;
     }
 }

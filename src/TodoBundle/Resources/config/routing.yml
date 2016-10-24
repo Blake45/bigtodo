@@ -11,3 +11,13 @@ todo_add_projet:
     defaults: { _controller: TodoBundle:Projet:addProjet }
     requirements:
         _method: GET|POST
+todo_create_etat:
+    path:     creation-etat
+    defaults: { _controller: TodoBundle:Etat:createEtat }
+    requirements:
+            _method: GET|POST
+todo_changement_colonne:
+    path:  changement-colonne/tache/{tache}/etat/{etat}
+    defaults: { _controller: TodoBundle:Task:deplacementTache, tache:0,etat:"state" }
+    requirements:
+        tache: \d

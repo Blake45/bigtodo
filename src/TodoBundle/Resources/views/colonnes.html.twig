@@ -5,7 +5,7 @@
             <h3>Taches</h3>
         </div>
         {% for tache in taches %}
-            <div class="card draggable">
+            <div class="card draggable" data-id="{{ tache.id }}">
                 <div class="card-content">
                     <span class="right">
                         <i class="fa fa-clock-o" aria-hidden="true"></i>
@@ -34,3 +34,5 @@
         </div>
     </div>
 </div>
+
+{% block variables %}{% endblock variables %}

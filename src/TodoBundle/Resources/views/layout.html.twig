@@ -15,19 +15,23 @@
 <body>
     {% block header %}
         <header>
-            <nav class="grey lighten-2">
-                <div class="nav-wrapper container-wide">
-                    {#<a href="#" class="brand-logo">Logo</a>#}
-                    <ul id="nav-mobile" class="left hide-on-med-and-down">
-                        <li>
-                            <a class='dropdown-button' data-activates='drop_projets' href="{{ url("todo_add_projet") }}">{% trans %}New Project{% endtrans %}</a>
-                            {{ render(controller("TodoBundle:Projet:showProjets")) }}
-                        </li>
-                        <li><a href="{{ url("user_login") }}">Connexion</a></li>
-                        <li><a href="{{ url("user_register") }}">Inscription</a></li>
-                    </ul>
-                </div>
-            </nav>
+            <div data-activates="mobile-demo" class="button-collapse">
+                <i class="fa fa-bars fa-2x" aria-hidden="true"></i>
+            </div>
+            <ul class="side-nav" id="mobile-demo">
+                <li><a href="{{ url('todo_homepage') }}"><i class="fa fa-columns"></i> Taches</a></li>
+                {% if app.user %}
+                    <li><a href="{{ url('user_logout') }}">Déconnexion</a></li>
+                {% else %}
+                    <li><a href="{{ url("user_login") }}">Connexion</a></li>
+                    <li><a href="{{ url("user_register") }}">Inscription</a></li>
+                {% endif %}
+                <li><a href="{{ url("todo_create_etat") }}">Etat des taches</a></li>
+                <li>
+                    <a class='dropdown-button' data-activates='drop_projets' href="{{ url("todo_add_projet") }}">{% trans %}New Project{% endtrans %}</a>
+                    {{ render(controller("TodoBundle:Projet:showProjets")) }}
+                </li>
+            </ul>
         </header>
     {% endblock header %}
 
@@ -56,10 +60,14 @@
     {% block modals %}{% endblock modals %}
 </body>
 
+    {% block variables %}
+        {% include "TodoBundle:Tache:vars_js.html.twig" %}
+    {% endblock variables %}
     {% javascripts
         '@TodoBundle/Resources/public/js/jquery-3.1.0.min.js'
         '@TodoBundle/Resources/public/js/jquery-ui.min.js'
         '@TodoBundle/Resources/public/js/jquery-clockpicker.min.js'
+        '@TodoBundle/Resources/public/js/deplace_task.js'
         '@TodoBundle/Resources/public/js/colonne.js'
     %}
         <script src="{{ asset_url }}"></script>

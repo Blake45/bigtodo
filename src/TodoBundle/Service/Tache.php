@@ -56,4 +56,28 @@ class Tache
         return $taches;
 
     }
+
+    /**
+     * Return the name of the etat
+     * @param $id_colonne
+     * @return string
+     */
+    public function getEtatByColonne($id_colonne) {
+
+        switch($id_colonne) {
+            case "a_faire":
+                return "A faire";
+            break;
+            case "en_cours":
+                return "En cours";
+            break;
+            case "finis":
+                return "Terminé";
+            break;
+            case "en_attente":
+                return "En attente";
+            break;
+            default: return "A faire"; break;
+        }
+    }
 }

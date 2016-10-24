@@ -13,3 +13,6 @@ user_register:
     defaults:  { _controller: UserBundle:Security:register }
     requirements:
         _method: GET|POST
+user_logout:
+    path: /deconnexion
+    defaults: { _controller: UserBundle:Security:logout }

@@ -20,3 +20,21 @@ h3{
 select{
     display: block;
 }
+.card {
+    font-family:jura;
+}
+.card .card-title {
+    font-size:1em;
+    line-height: 1em !important;
+}
+.card p {
+    font-size: 0.7em;
+}
+div.button-collapse {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    z-index: 10;
+    right:10px;
+    top:10px;
+}
