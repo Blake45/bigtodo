@@ -18,3 +18,7 @@ services:
             - '@security.secure_random'
             - '@security.password_encoder'
             - '@doctrine.orm.entity_manager'
+    todo.front_functions:
+        class: TodoBundle\Service\Front
+        tags:
+            - { name: twig.extension }

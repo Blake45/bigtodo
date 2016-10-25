@@ -1,10 +1,13 @@
 <div class="row">
-    <div class="col s12 m3 l3 droppable" data-etat="a_faire">
+{% for colonne in colonnes %}
+    <div class="col s12 m3 l3 droppable" data-etat="{{ colonne }}">
         <div class="header colonne">
-            <button class="btn-floating waves-effect orange darken-2" id="add-task"><i class="material-icons small library_add">add</i></button>
-            <h3>Taches</h3>
+            {% if colonne == "a_faire" %}
+                <button class="btn-floating waves-effect orange darken-2" id="add-task"><i class="material-icons small library_add">add</i></button>
+            {% endif %}
+            <h3>Taches {{ getNomColonne(colonne) }}</h3>
         </div>
-        {% for tache in taches %}
+        {% for tache in taches[colonne] %}
             <div class="card draggable" data-id="{{ tache.id }}">
                 <div class="card-content">
                     <span class="right">
@@ -16,23 +19,8 @@
                 </div>
             </div>
         {% endfor %}
-
     </div>
-    <div class="col s12 m3 l3 droppable" data-etat="en_cours">
-        <div class="header colonne">
-            <h3>Taches en cours</h3>
-        </div>
-    </div>
-    <div class="col s12 m3 l3 droppable" data-etat="finis">
-        <div class="header colonne">
-            <h3>Taches terminé</h3>
-        </div>
-    </div>
-    <div class="col s12 m3 l3 droppable" data-etat="attente">
-        <div class="header colonne">
-            <h3>Taches en attente</h3>
-        </div>
-    </div>
+{% endfor %}
 </div>
 
 {% block variables %}{% endblock variables %}

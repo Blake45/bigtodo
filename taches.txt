@@ -1,7 +1,6 @@
 Taches:
 
 	Card Taches :
-		Déplacement ==> changement de statut et de couleur
 		Affichage du temps à améliorer => en jours, en heures , pas en secondes
 		Statut en cours ==> chronomètre sur la tache
 		                    => requete sql sur etat_tache => journée de 8h ou 7h (7h par défaut)
@@ -9,6 +8,7 @@ Taches:
 		Méga tache => comprend des sous taches à afficher en modal listes de tache
 		Suppression taches / mis en corbeille
 		Alert difficulté / Blocage
+		Tache terminé ==> effacer etattache et setter tempsPasse
 
 	Design:
 		Pouvoir changer de couleur de fond
@@ -26,3 +26,7 @@ Taches faites:
 	Creation
 	Etat:
         formulaire creation etat
+    Déplacement ==> changement de statut et de couleur
+    	=> ajout d'une ligne dans etat_tache
+    	=> afficher les taches dans les bonnes colonnes
+    	etat precedent a setter

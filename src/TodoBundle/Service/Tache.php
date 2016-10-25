@@ -11,6 +11,8 @@ namespace TodoBundle\Service;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\ORMException;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Validator\Constraints\DateTime;
+use TodoBundle\Entity\EtatTache;
 use TodoBundle\Entity\Tache as EntityTache;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
@@ -24,6 +26,12 @@ class Tache
         $this->token = $token;
     }
 
+    /**
+     * Save tache
+     * @param EntityTache $tache
+     * @param Request $request
+     * @return bool
+     */
     public function saveTache(EntityTache $tache, Request $request){
 
         try{
@@ -43,14 +51,22 @@ class Tache
 
     }
 
+    /**
+     * Get taches by projet and etat in order to display taches in the right column
+     * @param null $id_projet
+     * @return array
+     */
     public function getTachesByProjet($id_projet = null){
 
+        $taches = array();//array that will be returned
+
         $tacheRepository = $this->em->getRepository("TodoBundle:Tache");
-        if($id_projet){
-            //todo get taches by project
-            $taches = null;
-        }else{
-            $taches = $tacheRepository->findAll();
+
+        $projet = (!is_null($id_projet)) ? $this->em->getRepository("TodoBundle:Projet")->find($id_projet) : null;
+
+        $colonnes = array("a_faire","en_cours","finis","en_attente");
+        foreach($colonnes as $colonne){
+            $taches[$colonne] = $tacheRepository->findByEtat($this->getEtatByColonne($colonne),$projet);
         }
 
         return $taches;
@@ -64,20 +80,58 @@ class Tache
      */
     public function getEtatByColonne($id_colonne) {
 
+        $etatRepo = $this->em->getRepository("TodoBundle:Etat");
+        $etat = $etatRepo->findOneBy(array("nom"=>"A faire"));
         switch($id_colonne) {
             case "a_faire":
-                return "A faire";
+                $etat = $etatRepo->findOneBy(array("nom"=>"A faire"));
             break;
             case "en_cours":
-                return "En cours";
+                $etat = $etatRepo->findOneBy(array("nom"=>"En cours"));
             break;
             case "finis":
-                return "Terminé";
+                $etat = $etatRepo->findOneBy(array("nom"=>"TerminÃ©"));
             break;
             case "en_attente":
-                return "En attente";
+                $etat = $etatRepo->findOneBy(array("nom"=>"En attente"));
             break;
-            default: return "A faire"; break;
+            default: null; break;
         }
+        return $etat;
+    }
+
+    /**
+     *
+     * @param $tache
+     * @param $etat
+     */
+    public function changeEtatTache($tache,$etat) {
+
+        try {
+            $tache->setEtat($etat);
+
+            $etat_precedents = $this->em->getRepository("TodoBundle:EtatTache")->findBy(array("tache"=>$tache));
+            foreach($etat_precedents as $etat_prec) {
+                $etat_prec->setDateFin(new \DateTime());
+                $this->em->persist($etat_prec);
+            }
+
+            $this->em->persist($tache);
+            $this->em->flush();
+
+            $etat_tache = new EtatTache();
+            $etat_tache->setDateDebut(new \DateTime());
+            $etat_tache->setEtat($etat);
+            $etat_tache->setTache($tache);
+
+            $this->em->persist($etat_tache);
+            $this->em->flush();
+
+            return array("success"=>true,"message"=>"The status of task has been changed");
+
+        }catch (ORMException $e){
+            return array("success"=>false,"message"=>$e->getMessage());
+        }
+
     }
 }

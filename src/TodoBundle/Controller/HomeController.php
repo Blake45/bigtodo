@@ -14,7 +14,8 @@ class HomeController extends Controller
         $taches = $this->get('todo.handle_tache')->getTachesByProjet();
 
         return $this->render("TodoBundle:Home:index.html.twig",array(
-            "taches"=>$taches
+            "taches"=>$taches,
+            "colonnes"=>array("a_faire","en_cours","finis","en_attente")
         ));
 
     }

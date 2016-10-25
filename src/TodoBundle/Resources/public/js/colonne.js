@@ -27,22 +27,8 @@ $(document).ready(function(){
             task.removeAttr('style');
             task.appendTo(colonne);
 
-            switch ($(colonne).attr('data-etat')){
-                case "a_faire":
-                    console.log("a faire");
-                break;
-                case "en_cours":
-                    //todo
-                    var url = url_changement_etat.replace('0',task.data('id')).replace('id_etat',$(colonne).data('etat'));
-                    tacheIsDoing();
-                break;
-                case "finis":
-                    console.log("finis");
-                break;
-                case "attente":
-                    console.log("attente");
-                break;
-            }
+            var url = url_changement_etat.replace('0',task.data('id')).replace('id_etat',$(colonne).data('etat'));
+            tacheIsDoing(url);
         }
     });
 

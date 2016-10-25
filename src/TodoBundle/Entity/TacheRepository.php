@@ -12,4 +12,34 @@ use Doctrine\ORM\EntityRepository;
  */
 class TacheRepository extends EntityRepository
 {
+
+    /**
+     * Return taches by etat
+     * @param $etat
+     * @param $projet
+     * @return \Doctrine\ORM\QueryBuilder
+     */
+    public function findByEtat($etat,$projet) {
+
+        $query = $this->createQueryBuilder("tache")
+            ->select("tache")
+            ->where("tache.etat = :etat")
+            ->setParameter("etat",$etat);
+
+        if($etat->getNom() == "A faire") {
+            $query
+                ->orWhere("tache.etat is NULL");
+        }
+
+        if(!is_null($projet)) {
+            $query
+                ->where("tache.projet = :projet")
+                ->setParameter("projet",$projet);
+        }
+        $taches = $query->getQuery()->getArrayResult();
+
+        return $taches;
+
+    }
+
 }

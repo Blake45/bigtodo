@@ -38,17 +38,15 @@ class TaskController extends Controller
     public function deplacementTacheAction(Request $request) {
 
         $em = $this->getDoctrine()->getManager();
-        $etatRepo = $em->getRepository("TodoBundle:EtatTache");
+
         $id_task = $request->get('tache');
         $tache = $em->getRepository("TodoBundle:Tache")->find($id_task);
-        $etat_precedent = $tache->getEtat();
-        $nom_etat = $this->get('todo.handle_tache')->getEtatByColonne($request->get("etat"));
-        $etat_nouveau = $etatRepo->findOneBy(array("nom"=>$nom_etat));
-        $tache->setEtat($etat_nouveau);
-        $em->persist($tache);
-        $em->flush();
 
-        return new JsonResponse(array("success"=>true));
+        $etat_nouveau = $this->get('todo.handle_tache')->getEtatByColonne($request->get("etat"));
+
+        return new JsonResponse(
+            $this->get('todo.handle_tache')->changeEtatTache($tache,$etat_nouveau)
+        );
     }
 
 }
