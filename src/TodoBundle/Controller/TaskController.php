@@ -49,4 +49,18 @@ class TaskController extends Controller
         );
     }
 
+
+    public function taskOverAction(Request $request) {
+
+        $em = $this->getDoctrine()->getManager();
+        $tache = $em->getRepository("TodoBundle:Tache")->find($request->get('tache'));
+
+        if(is_null($tache) || !$etat = $tache->getEtat() || $tache->getEtat()->getNom() != "Terminé" ) {
+            return new JsonResponse(array("error"=>"Can't do the process to this task, please refresh your page"));
+        }
+
+        //todo requete pour calculer le temps passé sur la tache
+
+    }
+
 }

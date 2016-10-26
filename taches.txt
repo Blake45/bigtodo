@@ -1,21 +1,20 @@
 Taches:
 
 	Card Taches :
-		Affichage du temps à améliorer => en jours, en heures , pas en secondes
-		Statut en cours ==> chronomètre sur la tache
-		                    => requete sql sur etat_tache => journée de 8h ou 7h (7h par défaut)
-		                    => prévoir heures supplémentaires
-		Méga tache => comprend des sous taches à afficher en modal listes de tache
+		Statut en cours ==> chronomÃªtre sur la tache
+		                    => requete sql sur etat_tache => journÃ©e de 8h ou 7h (7h par dÃ©faut)
+		                    => prÃ©voir heures supplÃ©mentaires
+		MÃ©ga tache => comprend des sous taches Ã  afficher en modal listes de tache
 		Suppression taches / mis en corbeille
-		Alert difficulté / Blocage
-		Tache terminé ==> effacer etattache et setter tempsPasse
+		Alert difficultÃ© / Blocage
+		Tache terminÃ© ==> effacer etattache et setter tempsPasse
 
 	Design:
 		Pouvoir changer de couleur de fond
 		Changement couleur
 
 	Pages:
-		Page affichant les taches terminés
+		Page affichant les taches terminÃ©s
 		Page affichant les autres taches
 		Page bilan tache projet
 		Page bilan tache developpeur
@@ -26,7 +25,10 @@ Taches faites:
 	Creation
 	Etat:
         formulaire creation etat
-    Déplacement ==> changement de statut et de couleur
+    DÃ©placement ==> changement de statut et de couleur
     	=> ajout d'une ligne dans etat_tache
     	=> afficher les taches dans les bonnes colonnes
     	etat precedent a setter
+    	Affichage du temps Ã  amÃ©liorer => en jours, en heures , pas en secondes
+    	Retirer date picker, 3 selecteurs Ã  la place
+    	impossible de supprimer tache avec un etat

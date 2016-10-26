@@ -42,4 +42,27 @@ class TacheRepository extends EntityRepository
 
     }
 
+
+    public function getSpentTime($idtache,$idetat = 2) {
+
+        $sql = "
+            SELECT
+                CASE
+                    WHEN DATEDIFF(date_debut,date_fin) = 0 THEN
+                        TIMESTAMPDIFF(second,date_debut,date_fin)
+                    ELSE NULL
+                END as 'tempsPasser',
+                date_debut,
+                date_fin
+            FROM etat_tache
+            WHERE id_tache = $idtache and id_etat = $idetat
+        ";
+
+        $conn = $this->_em->getConnection();
+        $results = $conn->query($sql)->fetchAll();
+
+        return $results;
+
+    }
+
 }

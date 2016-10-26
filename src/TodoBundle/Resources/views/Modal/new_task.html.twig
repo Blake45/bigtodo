@@ -13,7 +13,25 @@
                 </div>
                 <div class="form-control">
                     {{ form_label(form.tempsPrevu) }}
-                    <input type="time" id="tempsPrevu" data-autoclose="true"/>
+                    {#<input type="time" id="tempsPrevu" data-autoclose="true"/>#}
+                    <select id="jours" class="time browser-default">
+                        <option value="0">{% trans %}Select the number of days{% endtrans %}</option>
+                        {% for i in 1..31 %}
+                            <option value="{{ i }}">{{ i }}</option>
+                        {% endfor %}
+                    </select>
+                    <select id="heures" class="time browser-default">
+                        <option value="0">{% trans %}Select the number of hours{% endtrans %}</option>
+                        {% for i in 1..7 %}
+                            <option value="{{ i }}">{{ i }}</option>
+                        {% endfor %}
+                    </select>
+                    <select id="minutes" class="time browser-default">
+                        <option value="0">{% trans %}Select the number of minutes{% endtrans %}</option>
+                        {% for i in 1..59 %}
+                            <option value="{{ i }}">{{ i }}</option>
+                        {% endfor %}
+                    </select>
                     {{ form_widget(form.tempsPrevu,{'attr':{'type':'number','min':'0','data-autoclose':'true'}}) }}
                 </div>
                 <div class="form-control">

@@ -38,3 +38,7 @@ div.button-collapse {
     right:10px;
     top:10px;
 }
+#jours,#heures,#minutes {
+    display: inline-block;
+    width:20%;
+}

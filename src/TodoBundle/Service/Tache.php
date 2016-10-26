@@ -112,7 +112,9 @@ class Tache
 
             $etat_precedents = $this->em->getRepository("TodoBundle:EtatTache")->findBy(array("tache"=>$tache));
             foreach($etat_precedents as $etat_prec) {
-                $etat_prec->setDateFin(new \DateTime());
+                if(is_null($etat_prec->getDateFin())) {
+                    $etat_prec->setDateFin(new \DateTime());
+                }
                 $this->em->persist($etat_prec);
             }
 
@@ -131,6 +133,23 @@ class Tache
 
         }catch (ORMException $e){
             return array("success"=>false,"message"=>$e->getMessage());
+        }
+
+    }
+
+
+    public function getSpentTime($tache,$etat) {
+
+        $tacheRepo = $this->em->getRepository("TodoBundle:Tache");
+
+        $data = $tacheRepo->->getSpentTime($tache->getId());
+
+        if(is_null($data['tempsPasser'])) {
+            //todo calcul du temps
+            $date_debut = $data['date_debut'];
+            $date_fin = $data['date_fin'];
+        }else{
+            return $data['tempsPasser'];
         }
 
     }

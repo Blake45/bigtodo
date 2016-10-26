@@ -28,7 +28,11 @@ $(document).ready(function(){
             task.appendTo(colonne);
 
             var url = url_changement_etat.replace('0',task.data('id')).replace('id_etat',$(colonne).data('etat'));
-            tacheIsDoing(url);
+            tacheAjax(url);
+            if( $(colonne).data('etat') == "finis" ){
+                var url_over = "";
+                tacheAjax();
+            }
         }
     });
 
@@ -39,10 +43,10 @@ $(document).ready(function(){
             belowOrigin: true
     });
 
-    $('#tempsPrevu').clockpicker({
+    /*$('#tempsPrevu').clockpicker({
         afterDone: function() {
             var duration = $('#tempsPrevu').val();
-            var regex = /[0-9]*:[0-9]*/;
+            var regex = /[0-9]*:[0-9]*!/;
             var value = 0;
 
             if(regex.test(duration)){
@@ -54,8 +58,20 @@ $(document).ready(function(){
 
             $('#todobundle_tache_tempsPrevu').val(value);
         }
+    });*/
+
+    $('select.time').change(function(){
+
+        var days = $('#jours').val();
+        var hours = $('#heures').val();
+        var minutes = $('#minutes').val();
+        value = parseInt(days*25200)+parseInt(hours*3600)+parseInt(minutes*60);
+        $('#todobundle_tache_tempsPrevu').val(value);
     });
 
     $(".button-collapse").sideNav();
+    $('.card-panel .fa-close').click(function(){
+        $(this).parent().remove();
+    });
 
 });

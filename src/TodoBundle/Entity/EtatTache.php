@@ -38,14 +38,14 @@ class EtatTache
     /**
      * @var
      * @ORM\ManyToOne(targetEntity="\TodoBundle\Entity\Etat")
-     * @ORM\JoinColumn(name="id_etat", referencedColumnName="id")
+     * @ORM\JoinColumn(name="id_etat", referencedColumnName="id", onDelete="CASCADE")
      */
     private $etat;
 
     /**
      * @var
      * @ORM\ManyToOne(targetEntity="\TodoBundle\Entity\Tache")
-     * @ORM\JoinColumn(name="id_tache", referencedColumnName="id")
+     * @ORM\JoinColumn(name="id_tache", referencedColumnName="id", onDelete="CASCADE")
      */
     private $tache;
 
