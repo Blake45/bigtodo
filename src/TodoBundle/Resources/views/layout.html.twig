@@ -37,14 +37,14 @@
 
     {% block flashMessages %}
         {% if app.session.flashBag.has('success') %}
-            <div class="z-depth-1 card-panel light-green">
+            <div id="alert" class="z-depth-1 card-panel light-green">
                 <i class="fa fa-close"></i>
                 {% for msg in app.session.flashBag.get('success') %}
                     {{ msg }}
                 {% endfor %}
             </div>
         {% elseif app.session.flashBag.has('error') %}
-            <div class="z-depth-1 card-panel red accent-1">
+            <div id="alert" class="z-depth-1 card-panel red accent-1">
                 <i class="fa fa-close"></i>
                 {% for msg in app.session.flashBag.get('error') %}
                     {{ msg }}

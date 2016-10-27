@@ -63,6 +63,12 @@ class User implements UserInterface
      */
     private $tachesCrees;
 
+    /**
+     * @var
+     * @ORM\OneToMany(targetEntity="TodoBundle\Entity\Tache", mappedBy="userAssigned")
+     */
+    private $tachesEnCours;
+
 
     /**
      * Get id
@@ -247,5 +253,38 @@ class User implements UserInterface
     public function removeTachesCree(\TodoBundle\Entity\Tache $tachesCrees)
     {
         $this->tachesCrees->removeElement($tachesCrees);
+    }
+
+    /**
+     * Add tachesEnCours
+     *
+     * @param \TodoBundle\Entity\Tache $tachesEnCours
+     * @return User
+     */
+    public function addTachesEnCour(\TodoBundle\Entity\Tache $tachesEnCours)
+    {
+        $this->tachesEnCours[] = $tachesEnCours;
+
+        return $this;
+    }
+
+    /**
+     * Remove tachesEnCours
+     *
+     * @param \TodoBundle\Entity\Tache $tachesEnCours
+     */
+    public function removeTachesEnCour(\TodoBundle\Entity\Tache $tachesEnCours)
+    {
+        $this->tachesEnCours->removeElement($tachesEnCours);
+    }
+
+    /**
+     * Get tachesEnCours
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getTachesEnCours()
+    {
+        return $this->tachesEnCours;
     }
 }

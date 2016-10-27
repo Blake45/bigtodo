@@ -101,7 +101,7 @@ class Tache
     }
 
     /**
-     *
+     * Change the state of a task when it change the column
      * @param $tache
      * @param $etat
      */
@@ -138,19 +138,104 @@ class Tache
     }
 
 
-    public function getSpentTime($tache,$etat) {
+    /**
+     * Get the seconds spent on a task
+     * @param $tache
+     */
+    public function getSpentTime($tache) {
 
         $tacheRepo = $this->em->getRepository("TodoBundle:Tache");
 
-        $data = $tacheRepo->->getSpentTime($tache->getId());
+        $data = $tacheRepo->getSpentTime($tache->getId());
 
-        if(is_null($data['tempsPasser'])) {
-            //todo calcul du temps
-            $date_debut = $data['date_debut'];
-            $date_fin = $data['date_fin'];
-        }else{
-            return $data['tempsPasser'];
+        $tempsPasser = $tache->getTempsPasses();
+
+        foreach($data as $data_tache) {
+
+            if( $nbr_jours = $data_tache['nbr_jours'] ) {
+
+                $temps_debut = $this->getTempsJour($data_tache['date_debut'],true);
+                $temps_fin = $this->getTempsJour($data_tache['date_fin'],false);
+
+                if($nbr_jours > 1) {
+                    $tempsPasser += ($nbr_jours - 1 ) * 7 * 3600;
+                }
+
+                $tempsPasser += $temps_debut + $temps_fin;
+
+            }else{
+                $tempsPasser += $data_tache['tempsPasser'];
+            }
+
         }
+        return $tempsPasser;
+
+    }
+
+    /**
+     * Save the time spent on a task when it is finished
+     * @param EntityTache $tache
+     * @param $tempsPasser
+     * @return array|null
+     */
+    public function setTempsPasserOnTask(\TodoBundle\Entity\Tache $tache,$tempsPasser) {
+
+        $aRetour = null;
+        try {
+            $tache->setTempsPasses($tempsPasser);
+
+            $etats_tache = $this->em->getRepository("TodoBundle:EtatTache")->getAllEtat_Tache($tache);
+
+            foreach ($etats_tache as $etat_tache) {
+                $this->em->remove($etat_tache);
+            }
+            $this->em->persist($tache);
+            $this->em->flush();
+
+            $aRetour = array("success"=>true,"Time spent on the task has been calculated");
+
+        }catch (ORMException $e){
+            $aRetour = array("success"=>false,"An error occured, time spent on the task has been not saved");
+        }
+
+        return $aRetour;
+
+    }
+
+
+    /**
+     * Retourne le temps en secondes à partir d'une heure
+     * @param $date
+     * @return float|int
+     */
+    private function getTempsJour($date,$isBegin) {
+
+        $deb_jour = strtotime("09:00:00");
+        $pause_dej = strtotime("12:30:00");
+        $fin_jour = strtotime("18:00:00");
+        $reprise_dej = strtotime("14:00:00");
+
+        $heure = strtotime( explode(" ",$date)[1] );
+
+        if($isBegin){
+            if( date('H',$heure) < '12' ) {
+                $temps_matin = $pause_dej - $heure;
+                $temps_aprem = 4*3600;
+            }else{
+                $temps_matin = 0;
+                $temps_aprem = $fin_jour - $heure;
+            }
+        }else{
+            if( date('H',$heure) < '12' ) {
+                $temps_matin = $heure - $deb_jour;
+                $temps_aprem = 0;
+            }else {
+                $temps_matin = 3.5*3600;
+                $temps_aprem = $heure - $reprise_dej;
+            }
+        }
+
+        return $temps_matin+$temps_aprem;
 
     }
 }

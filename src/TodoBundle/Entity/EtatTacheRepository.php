@@ -37,4 +37,32 @@ class EtatTacheRepository extends EntityRepository
 
     }
 
+
+    /**
+     * todo etatFiltre as array of Etat
+     * Return all etat that the task had except etatFiltre
+     * @param $tache
+     * @param $etatFiltre
+     * @return array
+     */
+    public function getAllEtat_Tache($tache,$etatFiltre = null) {
+
+        $query = $this->createQueryBuilder("etattache")
+                        ->select("etattache")
+                        ->where("etattache.tache = :tache")
+                        ->setParameter("tache",$tache)
+                        ->orderBy("etattache.id","DESC")
+                        ->setFirstResult(1);
+
+        if($etatFiltre) {
+            $query  ->andWhere("etattache.etat <> :etat")
+                    ->setParameter("etat",$etatFiltre);
+        }
+
+        $results = $query->getQuery()->getResult();
+
+        return $results;
+
+    }
+
 }

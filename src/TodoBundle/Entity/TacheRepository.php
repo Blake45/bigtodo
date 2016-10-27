@@ -43,17 +43,20 @@ class TacheRepository extends EntityRepository
     }
 
 
+    /**
+     * @param $idtache
+     * @param int $idetat
+     * @return array
+     * @throws \Doctrine\DBAL\DBALException
+     */
     public function getSpentTime($idtache,$idetat = 2) {
 
         $sql = "
             SELECT
-                CASE
-                    WHEN DATEDIFF(date_debut,date_fin) = 0 THEN
-                        TIMESTAMPDIFF(second,date_debut,date_fin)
-                    ELSE NULL
-                END as 'tempsPasser',
+                TIMESTAMPDIFF(second,date_debut,date_fin) as 'tempsPasser',
                 date_debut,
-                date_fin
+                date_fin,
+                DATEDIFF(date_debut,date_fin) as 'nbr_jours'
             FROM etat_tache
             WHERE id_tache = $idtache and id_etat = $idetat
         ";

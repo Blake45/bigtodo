@@ -42,3 +42,9 @@ div.button-collapse {
     display: inline-block;
     width:20%;
 }
+.card.draggable .card-action {
+    padding: 5px;
+}
+.card.draggable .card-action i {
+    cursor: pointer;
+}

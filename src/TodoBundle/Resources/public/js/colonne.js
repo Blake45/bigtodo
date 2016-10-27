@@ -28,11 +28,12 @@ $(document).ready(function(){
             task.appendTo(colonne);
 
             var url = url_changement_etat.replace('0',task.data('id')).replace('id_etat',$(colonne).data('etat'));
-            tacheAjax(url);
+            var url_over = "";
             if( $(colonne).data('etat') == "finis" ){
-                var url_over = "";
-                tacheAjax();
+                url_over = url_tache_terminer.replace('0',task.data('id'));
             }
+            tacheAjax(url,url_over);
+
         }
     });
 
@@ -70,7 +71,13 @@ $(document).ready(function(){
     });
 
     $(".button-collapse").sideNav();
-    $('.card-panel .fa-close').click(function(){
+    $('#alert .fa-close').click(function(){
+        $(this).parent().remove();
+    });
+
+    $('.card-action .fa-close').click(function(){
+        var url_suppression = url_tache_suppression.replace('0',$(this).parent().parent().parent().data('id'));
+        tacheAjax(url_suppression);
         $(this).parent().remove();
     });
 

@@ -20,4 +20,14 @@ todo_changement_colonne:
     path:  changement-colonne/tache/{tache}/etat/{etat}/
     defaults: { _controller: TodoBundle:Task:deplacementTache, etat:id_etat,tache:0 }
     requirements:
-        tache: \d
+        tache: \d+
+todo_tache_terminee:
+    path: tache-terminer/{tache}/
+    defaults: { _controller: TodoBundle:Task:taskOver, tache:0 }
+    requirements:
+        tache: \d+
+todo_tache_supprimer:
+    path: supprimer-la-tache/{tache}/
+    defaults: { _controller: TodoBundle:Task:delete, tache:0 }
+    requirements:
+        tache: \d+

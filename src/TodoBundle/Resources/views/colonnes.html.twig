@@ -9,10 +9,23 @@
         </div>
         {% for tache in taches[colonne] %}
             <div class="card draggable" data-id="{{ tache.id }}">
+                <div class="card-action">
+                    <span class="left">
+                        <i title="Supprimer la tache" class="fa fa-close"></i>
+                    </span>
+                </div>
                 <div class="card-content">
                     <span class="right">
-                        <i class="fa fa-clock-o" aria-hidden="true"></i>
-                        {{ displayTime(tache.tempsPrevu) }}
+                        <div>
+                            <i class="fa fa-clock-o" aria-hidden="true"></i>
+                            {{ displayTime(tache.tempsPrevu) }}
+                        </div>
+                        {% if tache.tempsPasses %}
+                        <div>
+                            <i class="fa fa-clock-o {% if tache.tempsPasses < tache.tempsPrevu %}green-text text-lighten-2{% else %}red-text text-lighten-1{% endif %}" aria-hidden="true"></i>
+                            {{ displayTime(tache.tempsPasses) }}
+                        </div>
+                        {% endif %}
                     </span>
                     <span class="card-title">{{ tache.nom }}</span>
                     <p class="truncate">{{ tache.description }}</p>

@@ -60,7 +60,11 @@ class TaskController extends Controller
         }
 
         //todo requete pour calculer le temps passé sur la tache
+        $tempsPasser = $this->get('todo.handle_tache')->getSpentTime($tache,$etat);
 
+        $retour = $this->get('todo.handle_tache')->setTempsPasserOnTask($tache,$tempsPasser);
+
+        return new JsonResponse($retour);
     }
 
 }
