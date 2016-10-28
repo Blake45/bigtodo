@@ -1,0 +1,27 @@
+<header>
+    <div data-activates="mobile-demo" class="button-collapse">
+        <i class="fa fa-bars fa-2x" aria-hidden="true"></i>
+    </div>
+    <ul class="side-nav" id="mobile-demo">
+        <li><a href="{{ url('todo_homepage') }}"><i class="fa fa-columns fa-2x"></i> Taches</a></li>
+        {% if app.user %}
+            <li><a href="{{ url('user_logout') }}"><i class="fa fa-user-secret fa-2x"></i> Déconnexion</a></li>
+        {% else %}
+            <li><a href="{{ url("user_login") }}"><i class="fa fa-user fa-2x"></i> Connexion</a></li>
+            <li><a href="{{ url("user_register") }}"><i class="fa fa-user-plus fa-2x"></i> Inscription</a></li>
+        {% endif %}
+        <li><a href="{{ url("todo_create_etat") }}"><i class="fa fa-tags fa-2x"></i> Etat des taches</a></li>
+        <li>
+            <a class='dropdown-button' data-activates='drop_projets' href="{{ url("todo_add_projet") }}"><i class="fa fa-suitcase fa-2x"></i> {% trans %}New Project{% endtrans %}</a>
+            {{ render(controller("TodoBundle:Projet:showProjets")) }}
+        </li>
+        <li>
+            <a class='dropdown-button' data-activates='drop_pages' href="#" rel="nofollow"><i class="fa fa-pie-chart fa-2x"></i> {% trans %}Statistics{% endtrans %}</a>
+            <ul id='drop_pages' class='dropdown-content'>
+                <li class="valign-wrapper">
+                    <a href=""><i class="fa fa-trash"> {% trans %}Trash{% endtrans %}</i></a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</header>

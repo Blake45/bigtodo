@@ -75,10 +75,9 @@ $(document).ready(function(){
         $(this).parent().remove();
     });
 
-    $('.card-action .fa-close').click(function(){
+    $('.card-action .corbeille').click(function(){
         var url_suppression = url_tache_suppression.replace('0',$(this).parent().parent().parent().data('id'));
-        tacheAjax(url_suppression);
-        $(this).parent().remove();
+        tacheSupprimer(url_suppression,$(this).parent().parent().parent());
     });
 
 });

@@ -50,6 +50,11 @@ class TaskController extends Controller
     }
 
 
+    /**
+     * Calculate and set the time spent on the task because the task is over
+     * @param Request $request
+     * @return JsonResponse
+     */
     public function taskOverAction(Request $request) {
 
         $em = $this->getDoctrine()->getManager();
@@ -66,5 +71,24 @@ class TaskController extends Controller
 
         return new JsonResponse($retour);
     }
+
+
+    /**
+     * Task is deleted and put and the trash
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function deleteAction(Request $request) {
+
+        $em = $this->getDoctrine()->getManager();
+        $tache = $em->getRepository("TodoBundle:Tache")->find($request->get('tache'));
+
+        $retour = $this->get('todo.handle_tache')->misenCorbeille($tache);
+
+        return new JsonResponse($retour);
+
+    }
+
+    public function 
 
 }

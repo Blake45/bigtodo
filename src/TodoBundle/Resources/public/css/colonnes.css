@@ -48,3 +48,7 @@ div.button-collapse {
 .card.draggable .card-action i {
     cursor: pointer;
 }
+#mobile-demo li a i {
+    vertical-align: middle;
+    margin-right: 20px;
+}

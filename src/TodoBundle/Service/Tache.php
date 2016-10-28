@@ -164,7 +164,7 @@ class Tache
                 $tempsPasser += $temps_debut + $temps_fin;
 
             }else{
-                $tempsPasser += $data_tache['tempsPasser'];
+                $tempsPasser += $this->getSpentTimeForOneDay($data_tache['date_debut'],$data_tache['date_fin']);
             }
 
         }
@@ -204,6 +204,35 @@ class Tache
 
 
     /**
+     * Set the task in Corbeille Etat
+     * @param EntityTache $tache
+     * @return array
+     */
+    public function misenCorbeille(\TodoBundle\Entity\Tache $tache) {
+
+        if(is_null($tache)){
+            return array("success"=>false,"message"=>"Can't remove the task, it already does not exist");
+        }
+
+        $etatCorbeille = $this->em->getRepository("TodoBundle:Etat")->findOneBy(array("nom"=>"Corbeille"));
+        if(is_null($etatCorbeille)){
+            return array("success"=>false,"message"=>"Please create the state Corbeille");
+        }
+
+        try {
+            $tache->setEtat($etatCorbeille);
+            $this->em->persist($tache);
+            $this->em->flush();
+        }catch (ORMException $e) {
+            return array("success"=>false,"message"=>$e->getMessage());
+        }
+
+        return array("success"=>true,"message"=>"The task has been removed");
+
+    }
+
+
+    /**
      * Retourne le temps en secondes à partir d'une heure
      * @param $date
      * @return float|int
@@ -236,6 +265,31 @@ class Tache
         }
 
         return $temps_matin+$temps_aprem;
+
+    }
+
+
+    /**
+     * Calculate the time spent on a task that happened at one day
+     * @param $date_debut
+     * @param $date_fin
+     * @return int
+     */
+    private function getSpentTimeForOneDay($date_debut,$date_fin) {
+
+        $pause_dej = strtotime("12:30:00");
+        $reprise_dej = strtotime("14:00:00");
+
+        $heure_debut = strtotime( explode(" ",$date_debut)[1] );
+        $heure_fin = strtotime( explode(" ",$date_fin)[1] );
+
+        if( (date('H',$heure_debut) < '12' && date('H',$heure_fin) < '12') || (date('H',$heure_debut) > '12' && date('H',$heure_fin) > '12') ) {
+            return $heure_fin - $heure_debut;
+        }else {
+            $temps_matin = $pause_dej - $heure_debut;
+            $temps_aprem = $heure_fin - $reprise_dej;
+            return $temps_matin+$temps_aprem;
+        }
 
     }
 }

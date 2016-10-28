@@ -1,11 +1,9 @@
 Taches:
 
 	Card Taches :
-		Statut en cours ==> chronomêtre sur la tache
-		                    => prévoir heures supplémentaires
 		Méga tache => comprend des sous taches à afficher en modal listes de tache
-		Suppression taches / mis en corbeille
 		Alert difficulté / Blocage
+		Afficher projet en cours
 
 	Design:
 		Pouvoir changer de couleur de fond
@@ -33,3 +31,6 @@ Taches faites:
     	impossible de supprimer tache avec un etat
     	Tache terminé ==> effacer etattache et setter tempsPasse
     	=> requete sql sur etat_tache => journée de 8h ou 7h (7h par défaut)
+    	Suppression taches / mis en corbeille
+    	Creation de tache si user connecté
+    	Statut en cours ==> chronomêtre sur la tache

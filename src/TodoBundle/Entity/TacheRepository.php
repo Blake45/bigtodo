@@ -53,7 +53,6 @@ class TacheRepository extends EntityRepository
 
         $sql = "
             SELECT
-                TIMESTAMPDIFF(second,date_debut,date_fin) as 'tempsPasser',
                 date_debut,
                 date_fin,
                 DATEDIFF(date_debut,date_fin) as 'nbr_jours'
