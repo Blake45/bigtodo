@@ -22,3 +22,7 @@ services:
         class: TodoBundle\Service\Front
         tags:
             - { name: twig.extension }
+    todo.handle_etat:
+        class: TodoBundle\Service\Etat
+        arguments:
+            - '@doctrine.orm.entity_manager'

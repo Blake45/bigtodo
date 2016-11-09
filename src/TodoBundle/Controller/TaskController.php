@@ -89,6 +89,20 @@ class TaskController extends Controller
 
     }
 
-    public function 
+    /**
+     * Task is set blocked or unblocked, todo sent an alert to manager
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function blockedAction(Request $request) {
+
+        $em = $this->getDoctrine()->getManager();
+        $tache = $em->getRepository("TodoBundle:Tache")->find($request->get('tache'));
+
+        $retour = $this->get('todo.handle_tache')->blockOrunblockTask($tache);
+
+        return new JsonResponse($retour);
+
+    }
 
 }

@@ -39,7 +39,11 @@
         {% include "TodoBundle::colonnes.html.twig" %}
     {% endblock content %}
 
-    {% block footer %}{% endblock footer %}
+    <footer>
+        {% block footer %}
+
+        {% endblock footer %}
+    </footer>
 
     {% block modals %}{% endblock modals %}
 </body>

@@ -27,6 +27,7 @@ $(document).ready(function(){
             task.removeAttr('style');
             task.appendTo(colonne);
 
+            console.log(task.data('id'));
             var url = url_changement_etat.replace('0',task.data('id')).replace('id_etat',$(colonne).data('etat'));
             var url_over = "";
             if( $(colonne).data('etat') == "finis" ){
@@ -78,6 +79,11 @@ $(document).ready(function(){
     $('.card-action .corbeille').click(function(){
         var url_suppression = url_tache_suppression.replace('0',$(this).parent().parent().parent().data('id'));
         tacheSupprimer(url_suppression,$(this).parent().parent().parent());
+    });
+
+    $('.card-action .blocked').click(function() {
+        var url_blocage = url_tache_blocked.replace('0', $(this).parent().parent().parent().data('id') );
+        tacheAjax(url_blocage,null);
     });
 
 });

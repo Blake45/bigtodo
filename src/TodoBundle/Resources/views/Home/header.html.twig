@@ -2,6 +2,12 @@
     <div data-activates="mobile-demo" class="button-collapse">
         <i class="fa fa-bars fa-2x" aria-hidden="true"></i>
     </div>
+    <div class="active-projet">
+        <i class="fa fa-folder-open fa-2x"></i>
+        {% if app.session.get('current_project') %}
+        djksjfskldfjl
+        {% endif %}
+    </div>
     <ul class="side-nav" id="mobile-demo">
         <li><a href="{{ url('todo_homepage') }}"><i class="fa fa-columns fa-2x"></i> Taches</a></li>
         {% if app.user %}

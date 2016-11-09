@@ -104,6 +104,21 @@ class Tache
 
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="isblocked", type="boolean")
+     */
+    private $isBlocked=false;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="en_corbeille", type="boolean")
+     */
+    private $encorbeille=false;
+
+
+    /**
      * Get id
      *
      * @return integer 
@@ -387,5 +402,51 @@ class Tache
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Set isBlocked
+     *
+     * @param boolean $isBlocked
+     * @return Tache
+     */
+    public function setIsBlocked($isBlocked)
+    {
+        $this->isBlocked = $isBlocked;
+
+        return $this;
+    }
+
+    /**
+     * Get isBlocked
+     *
+     * @return boolean 
+     */
+    public function getIsBlocked()
+    {
+        return $this->isBlocked;
+    }
+
+    /**
+     * Set encorbeille
+     *
+     * @param boolean $encorbeille
+     * @return Tache
+     */
+    public function setEncorbeille($encorbeille)
+    {
+        $this->encorbeille = $encorbeille;
+
+        return $this;
+    }
+
+    /**
+     * Get encorbeille
+     *
+     * @return boolean 
+     */
+    public function getEncorbeille()
+    {
+        return $this->encorbeille;
     }
 }

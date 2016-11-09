@@ -1,7 +1,7 @@
 <ul id='drop_projets' class='dropdown-content'>
     {% for projet in projets %}
         <li class="valign-wrapper">
-            <a href="{{ projet.id }}">{{ projet.nom }}</a>
+            <a href="{{ url("todo_taches_projet",{projet:projet.id}) }}">{{ projet.nom }}</a>
         </li>
     {% endfor %}
 </ul>

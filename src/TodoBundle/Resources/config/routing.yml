@@ -1,21 +1,29 @@
 todo_homepage:
     path:     /
     defaults: { _controller: TodoBundle:Home:index }
-todo_add_new_task:
-    path:    /ajouter/nouvelle-tache/
-    defaults: { _controller: TodoBundle:Task:new_taskPost }
-    requirements:
-        _method: POST
+#route Projet
 todo_add_projet:
     path: /ajouter/projet
     defaults: { _controller: TodoBundle:Projet:addProjet }
     requirements:
         _method: GET|POST
+todo_taches_projet:
+    path: /projet/{projet}/afficher-les-taches
+    defaults: { _controller: TodoBundle:Projet:setProjetInSession }
+    requirements:
+        projet: \d+
+#route Etat
 todo_create_etat:
     path:     creation-etat
     defaults: { _controller: TodoBundle:Etat:createEtat }
     requirements:
             _method: GET|POST
+#routes Tasks
+todo_add_new_task:
+    path:    /ajouter/nouvelle-tache/
+    defaults: { _controller: TodoBundle:Task:new_taskPost }
+    requirements:
+        _method: POST
 todo_changement_colonne:
     path:  changement-colonne/tache/{tache}/etat/{etat}/
     defaults: { _controller: TodoBundle:Task:deplacementTache, etat:id_etat,tache:0 }
@@ -31,3 +39,16 @@ todo_tache_supprimer:
     defaults: { _controller: TodoBundle:Task:delete, tache:0 }
     requirements:
         tache: \d+
+todo_tache_blocked:
+    path: bloquer-debloquer-tache/{tache}/
+    defaults: { _controller: TodoBundle:Task:blocked, tache:0 }
+    requirements:
+        tache: \d+
+
+#tests autoformation
+todo_test:
+    path: tests/
+    defaults: { _controller: TodoBundle:Test:index }
+todo_users:
+    type: rest
+    resource: TodoBundle\Controller\UsersController

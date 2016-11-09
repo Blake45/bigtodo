@@ -214,13 +214,9 @@ class Tache
             return array("success"=>false,"message"=>"Can't remove the task, it already does not exist");
         }
 
-        $etatCorbeille = $this->em->getRepository("TodoBundle:Etat")->findOneBy(array("nom"=>"Corbeille"));
-        if(is_null($etatCorbeille)){
-            return array("success"=>false,"message"=>"Please create the state Corbeille");
-        }
-
         try {
-            $tache->setEtat($etatCorbeille);
+            $corbeille = $tache->getEncorbeille() ? false : true;
+            $tache->setEncorbeille($corbeille);
             $this->em->persist($tache);
             $this->em->flush();
         }catch (ORMException $e) {
@@ -291,5 +287,29 @@ class Tache
             return $temps_matin+$temps_aprem;
         }
 
+    }
+
+
+    /**
+     * Blocked or unblocked the task
+     * @param EntityTache $tache
+     */
+    public function blockOrunblockTask(\TodoBundle\Entity\Tache $tache) {
+
+        if(is_null($tache)){
+            return array("success"=>false,"message"=>"the task does not exist");
+        }
+
+        try {
+            $blocage = $tache->getIsBlocked() ? false : true;
+            $statut = $blocage ? "blocked":"unblocked";
+            $tache->setIsBlocked($blocage);
+            $this->em->persist($tache);
+            $this->em->flush();
+        }catch (ORMException $e) {
+            return array("success"=>false,"message"=>$e->getMessage());
+        }
+
+        return array("success"=>true,"message"=>"The task has been $statut");
     }
 }

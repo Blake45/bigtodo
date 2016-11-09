@@ -2,8 +2,9 @@ Taches:
 
 	Card Taches :
 		Méga tache => comprend des sous taches à afficher en modal listes de tache
-		Alert difficulté / Blocage
 		Afficher projet en cours
+		modal tache pour afficher la description + details taches
+		changer la place du bouton déconnexion et afficher info du user
 
 	Design:
 		Pouvoir changer de couleur de fond
@@ -34,3 +35,4 @@ Taches faites:
     	Suppression taches / mis en corbeille
     	Creation de tache si user connecté
     	Statut en cours ==> chronomêtre sur la tache
+    Alert difficulté / Blocage

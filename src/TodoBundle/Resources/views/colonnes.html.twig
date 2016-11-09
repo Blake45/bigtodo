@@ -13,6 +13,11 @@
                     <span class="left">
                         <i title="Supprimer la tache" class="fa fa-trash-o corbeille"></i>
                     </span>
+                    {% if colonne == "en_cours" %}
+                    <span class="left mleft-10">
+                        <i title="Vous êtes bloqué sur cette tache" class="fa fa-minus-circle blocked {% if tache.isBlocked %} red-text text-lighten-1 {% endif %}"></i>
+                    </span>
+                    {% endif %}
                 </div>
                 <div class="card-content">
                     <span class="right">

@@ -12,4 +12,33 @@ use Doctrine\ORM\EntityRepository;
  */
 class EtatRepository extends EntityRepository
 {
+
+    /**
+     * Set the values of the etat Table
+     * @throws \Doctrine\DBAL\DBALException
+     */
+    public function initEtats() {
+
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = "
+            INSERT INTO etat (nom) VALUES ('A faire');
+            INSERT INTO etat (nom) VALUES ('En cours');
+            INSERT INTO etat (nom) VALUES ('Terminé');
+            INSERT INTO etat (nom) VALUES ('En attente');
+        ";
+
+        $sqls = explode(";",trim($sql));
+        foreach($sqls as $insert) {
+
+            $query = trim($insert);
+            if(strlen($query)) {
+                echo "Etat inserted $query \n";
+                $conn->query($query);
+            }
+
+        }
+
+    }
+
 }
