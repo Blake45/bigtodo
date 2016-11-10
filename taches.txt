@@ -2,7 +2,6 @@ Taches:
 
 	Card Taches :
 		Méga tache => comprend des sous taches à afficher en modal listes de tache
-		Afficher projet en cours
 		modal tache pour afficher la description + details taches
 		changer la place du bouton déconnexion et afficher info du user
 
@@ -15,7 +14,7 @@ Taches:
 		Page affichant les autres taches
 		Page bilan tache projet
 		Page bilan tache developpeur
-		Page affichant les taches en corbeilles
+		Page affichant les taches en corbeilles ==> a sortir du menu stats
 
 
 Taches faites:
@@ -36,3 +35,5 @@ Taches faites:
     	Creation de tache si user connecté
     	Statut en cours ==> chronomêtre sur la tache
     Alert difficulté / Blocage
+    Afficher projet en cours
+    design statistiques

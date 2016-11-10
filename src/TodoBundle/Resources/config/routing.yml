@@ -45,6 +45,20 @@ todo_tache_blocked:
     requirements:
         tache: \d+
 
+#route Statistiques
+todo_statistiques_taches_terminees:
+    path: /taches-terminees
+    defaults: { _controller: TodoBundle:Stats:endedTask }
+    requirements:
+        _method: GET
+todo_statistiques_projet:
+    path:     /bilan-{projet}/{id_projet}
+    defaults: { _controller: TodoBundle:Stats:project }
+
+todo_statistiques_developper:
+    path:     /bilan-developper/{iddev}
+    defaults: { _controller: TodoBundle:Stats:developper }
+
 #tests autoformation
 todo_test:
     path: tests/

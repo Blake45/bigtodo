@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Taches</title>
+    <title>{% block title %}{% trans %}Tasks{% endtrans %}{% endblock title %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
@@ -13,9 +13,7 @@
 </head>
 
 <body>
-    {% block header %}
-        {% include "TodoBundle:Home:header.html.twig" %}
-    {% endblock header %}
+    {% include "TodoBundle:Home:header.html.twig" %}
 
     {% block flashMessages %}
         {% if app.session.flashBag.has('success') %}

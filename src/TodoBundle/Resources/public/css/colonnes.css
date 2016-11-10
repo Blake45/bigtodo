@@ -5,7 +5,7 @@
     font-family: jura;
     src: url('../fonts/Jura-DemiBold.ttf');
 }
-h3{
+h3, .side-nav li i span{
     font-family: jura;
     font-size:18px;
 }
@@ -30,13 +30,16 @@ select{
 .card p {
     font-size: 0.7em;
 }
-div.button-collapse {
+div.button-collapse, div.active-projet {
     width: 50px;
     height: 50px;
     position: absolute;
     z-index: 10;
     right:10px;
     top:10px;
+}
+div.active-projet {
+    right:70px;
 }
 #jours,#heures,#minutes {
     display: inline-block;
@@ -54,4 +57,10 @@ div.button-collapse {
 }
 .mleft-10 {
     margin-left: 10px;
+}
+i {
+    cursor: pointer;
+}
+#drop_pages {
+    width: 240px !important;
 }

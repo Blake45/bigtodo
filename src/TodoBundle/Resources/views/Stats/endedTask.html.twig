@@ -1,0 +1,11 @@
+{% extends "TodoBundle::layout.html.twig" %}
+
+{% block title %}{% trans %}Tasks ended{% endtrans %}{% endblock %}
+
+{% if app.session.get('current_project') %}
+{% set current_project = app.session.get('current_project').nom %}
+{% endif %}
+
+{% block content %}
+<h1>{% trans %}Tasks ended{% endtrans %} {{ current_project }}</h1>
+{% endblock %}

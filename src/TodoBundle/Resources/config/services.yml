@@ -1,7 +1,4 @@
 services:
-#    todo.example:
-#        class: TodoBundle\Example
-#        arguments: [@service_id, "plain_value", %parameter%]
     todo.handle_projet:
         class: TodoBundle\Service\Projet
         arguments:
@@ -26,3 +23,8 @@ services:
         class: TodoBundle\Service\Etat
         arguments:
             - '@doctrine.orm.entity_manager'
+    todo_stats:
+        class: TodoBundle\Service\Stats
+        arguments:
+            - '@doctrine.orm.entity_manager'
+            - '@service_container'

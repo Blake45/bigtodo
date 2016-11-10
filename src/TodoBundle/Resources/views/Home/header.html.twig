@@ -1,11 +1,11 @@
 <header>
+    {% block header %}{% endblock header %}
     <div data-activates="mobile-demo" class="button-collapse">
         <i class="fa fa-bars fa-2x" aria-hidden="true"></i>
     </div>
     <div class="active-projet">
-        <i class="fa fa-folder-open fa-2x"></i>
         {% if app.session.get('current_project') %}
-        djksjfskldfjl
+            <i title="{{ app.session.get('current_project').nom }}" class="fa fa-folder-open fa-2x"></i>
         {% endif %}
     </div>
     <ul class="side-nav" id="mobile-demo">
@@ -18,14 +18,23 @@
         {% endif %}
         <li><a href="{{ url("todo_create_etat") }}"><i class="fa fa-tags fa-2x"></i> Etat des taches</a></li>
         <li>
-            <a class='dropdown-button' data-activates='drop_projets' href="{{ url("todo_add_projet") }}"><i class="fa fa-suitcase fa-2x"></i> {% trans %}New Project{% endtrans %}</a>
+            <a class='dropdown-button' data-activates='drop_projets' href="{{ url("todo_add_projet") }}"><i class="fa fa-folder fa-2x"></i> {% trans %}New Project{% endtrans %}</a>
             {{ render(controller("TodoBundle:Projet:showProjets")) }}
+        </li>
+        <li>
+            <a href=""><i class="fa fa-trash fa-2x"></i> {% trans %}Trash{% endtrans %}</a>
         </li>
         <li>
             <a class='dropdown-button' data-activates='drop_pages' href="#" rel="nofollow"><i class="fa fa-pie-chart fa-2x"></i> {% trans %}Statistics{% endtrans %}</a>
             <ul id='drop_pages' class='dropdown-content'>
                 <li class="valign-wrapper">
-                    <a href=""><i class="fa fa-trash"> {% trans %}Trash{% endtrans %}</i></a>
+                    <a href="{{ url('todo_statistiques_taches_terminees') }}"><i class="fa fa-check-square-o"> <span>{% trans %}Tasks ended{% endtrans %}</span></i></a>
+                </li>
+                <li class="valign-wrapper">
+                    <a href=""><i class="fa fa-area-chart"> <span>{% trans %}Project balance sheet{% endtrans %}</span></i></a>
+                </li>
+                <li class="valign-wrapper">
+                    <a href=""><i class="fa fa-bar-chart"> <span>{% trans %}Developper balance sheet{% endtrans %}</span></i></a>
                 </li>
             </ul>
         </li>
