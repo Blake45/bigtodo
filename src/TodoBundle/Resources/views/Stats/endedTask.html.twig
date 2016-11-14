@@ -2,10 +2,92 @@
 
 {% block title %}{% trans %}Tasks ended{% endtrans %}{% endblock %}
 
-{% if app.session.get('current_project') %}
-{% set current_project = app.session.get('current_project').nom %}
-{% endif %}
-
 {% block content %}
-<h1>{% trans %}Tasks ended{% endtrans %} {{ current_project }}</h1>
+<h1>{% trans %}Tasks ended{% endtrans %} {{ projet }}</h1>
+<div class="row">
+    <div class="col s8 m8 l8">
+        <div class="container-canvas">
+            <canvas id="veracity" width="100" height="100"></canvas>
+        </div>
+        <p class="stats">{{ endedTasks|length }} {% trans %} tasks have been ended, here are the data on them{% endtrans %}</p>
+        <div class="container-canvas">
+            <canvas id="averagetime" width="100" height="100"></canvas>
+        </div>
+    </div>
+    <div class="col s4 m4 l4">
+        {% for tache in endedTasks %}
+            <div class="card draggable" data-id="{{ tache.id }}">
+                <div class="card-action">
+                    <span class="left">
+                        <i title="Supprimer la tache" class="fa fa-trash-o corbeille"></i>
+                    </span>
+                    <span class="left mleft-10">
+                        <i title="Vous êtes bloqué sur cette tache" class="fa fa-minus-circle blocked {% if tache.isBlocked %} red-text text-lighten-1 {% endif %}"></i>
+                    </span>
+                </div>
+                <div class="card-content">
+                    <span class="right">
+                        <div>
+                            <i class="fa fa-clock-o" aria-hidden="true"></i>
+                            {{ displayTime(tache.tempsPrevu) }}
+                        </div>
+                        {% if tache.tempsPasses %}
+                            <div>
+                                <i class="fa fa-clock-o {% if tache.tempsPasses < tache.tempsPrevu %}green-text text-lighten-2{% else %}red-text text-lighten-1{% endif %}" aria-hidden="true"></i>
+                                {{ displayTime(tache.tempsPasses) }}
+                            </div>
+                        {% endif %}
+                    </span>
+                    <span class="card-title">{{ tache.nom }}</span>
+                    <p class="truncate">{{ tache.description }}</p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
 {% endblock %}
+
+
+{% block javascripts %}
+    <!-- todo template pour data js -->
+    <script type="text/javascript">
+        var dataVeracity = {
+            labels: [
+                "{% trans %}Veracity{% endtrans %} {{ veracity }}",
+            ],
+            datasets: [
+                {
+                    data: [{{ veracity }}],
+                    backgroundColor: [
+                        "#F5871F"
+                    ],
+                    hoverBackgroundColor: [
+                        "#E17E0D"
+                    ]
+                }
+            ]
+        };
+        var dataAvg = {
+            labels: [
+                "{% trans %}Time (s){% endtrans %} {{ displayTime(average) }}",
+            ],
+            datasets: [
+                {
+                    data: [{{ average }}],
+                    backgroundColor: [
+                        "#F5871F"
+                    ],
+                    hoverBackgroundColor: [
+                        "#E17E0D"
+                    ]
+                }
+            ]
+        };
+    </script>
+    {% javascripts
+        '@TodoBundle/Resources/public/js/Chart.js'
+        '@TodoBundle/Resources/public/js/stats.js'
+    %}
+        <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock javascripts %}

@@ -7,25 +7,23 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class StatsController extends Controller
 {
     /**
+     * todo
      * Display all the ended tasks with stats on them
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function endedTaskAction()
     {
-
-        /**
-         * todo
-         * get all ended tasks by project or not
-         * rapport entre temps prévu et temps réel
-         * nombre de tache
-         * rapport de complexité des taches
-         * nombre de user sur les taches par projet ou pas
-         */
         $current_project = $this->get('session')->get('current_project');
         $endedTasks = $this->get('todo_stats')->getAllEndedTasks($current_project);
+        $veracity = $this->get('todo_stats')->getVeracityTasks($endedTasks);
+        $average = $this->get('todo_stats')->getAverageTimeByTasks($endedTasks);
+
 
         return $this->render('TodoBundle:Stats:endedTask.html.twig', array(
-            "endedTasks"=>$endedTasks
+            "endedTasks"=>$endedTasks,
+            "veracity"=>$veracity,
+            "projet"=>$current_project->getNom(),
+            "average"=>$average
         ));
     }
 

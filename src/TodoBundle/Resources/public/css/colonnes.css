@@ -5,9 +5,14 @@
     font-family: jura;
     src: url('../fonts/Jura-DemiBold.ttf');
 }
-h3, .side-nav li i span{
+h3, .side-nav li i span, h1{
     font-family: jura;
     font-size:18px;
+}
+h1 {
+    margin: 0 auto;
+    padding-left:1%;
+    font-size: 36px;
 }
 .tache{
     width:95%;
@@ -63,4 +68,16 @@ i {
 }
 #drop_pages {
     width: 240px !important;
+}
+.container-canvas {
+    width: 150px;
+    height: 150px;
+    margin-left:1%;
+    display: inline-block;
+}
+p.stats {
+    display: inline-block;
+    width:25%;
+    vertical-align:top;
+    padding-top:4%;
 }
