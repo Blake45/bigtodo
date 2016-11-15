@@ -44,6 +44,7 @@ class Corbeille
 
         if(is_null($tache)){
             $this->container->get('session')->getFlashBag()->add('error', 'The task does not exist');
+            return;
         }
 
         try {
@@ -67,6 +68,7 @@ class Corbeille
 
         if(is_null($tache)){
             $this->container->get('session')->getFlashBag()->add('error', 'The task does not exist');
+            return;
         }
 
         try {

@@ -56,7 +56,7 @@ class TacheRepository extends EntityRepository
             SELECT
                 date_debut,
                 date_fin,
-                DATEDIFF(date_debut,date_fin) as 'nbr_jours'
+                DATEDIFF(date_fin,date_debut) as 'nbr_jours'
             FROM etat_tache
             WHERE id_tache = $idtache and id_etat = $idetat
         ";

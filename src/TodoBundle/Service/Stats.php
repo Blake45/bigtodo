@@ -24,6 +24,7 @@ class Stats
         $ended = $this->em->getRepository("TodoBundle:Etat")->find(4);//ended state
         if(is_null($ended)){
             $this->container->get('session')->getFlashBag()->add('error', 'The state Ended does not exist, please init the database');
+            return null;
         }
 
         if(!is_null($projet)) {
