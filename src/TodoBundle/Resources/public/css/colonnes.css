@@ -1,4 +1,4 @@
-.col{
+.colonnes .col{
     min-height: 100vh;
 }
 @font-face {
@@ -70,8 +70,8 @@ i {
     width: 240px !important;
 }
 .container-canvas {
-    width: 150px;
-    height: 150px;
+    width: 200px;
+    height: 200px;
     margin-left:1%;
     display: inline-block;
 }

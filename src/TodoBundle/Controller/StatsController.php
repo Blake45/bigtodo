@@ -22,7 +22,7 @@ class StatsController extends Controller
         return $this->render('TodoBundle:Stats:endedTask.html.twig', array(
             "endedTasks"=>$endedTasks,
             "veracity"=>$veracity,
-            "projet"=>$current_project->getNom(),
+            "projet"=>$current_project ? $current_project->getNom(): "",
             "average"=>$average
         ));
     }

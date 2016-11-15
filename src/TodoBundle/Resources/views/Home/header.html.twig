@@ -5,7 +5,7 @@
     </div>
     <div class="active-projet">
         {% if app.session.get('current_project') %}
-            <i title="{{ app.session.get('current_project').nom }}" class="fa fa-folder-open fa-2x"></i>
+            <a href="{{ url('todo_change_current_project') }}"><i title="{{ app.session.get('current_project').nom }}" class="fa fa-folder-open fa-2x"></i></a>
         {% endif %}
     </div>
     <ul class="side-nav" id="mobile-demo">
@@ -22,7 +22,7 @@
             {{ render(controller("TodoBundle:Projet:showProjets")) }}
         </li>
         <li>
-            <a href=""><i class="fa fa-trash fa-2x"></i> {% trans %}Trash{% endtrans %}</a>
+            <a href="{{ url("todo_corbeille") }}"><i class="fa fa-trash fa-2x"></i> {% trans %}Trash{% endtrans %}</a>
         </li>
         <li>
             <a class='dropdown-button' data-activates='drop_pages' href="#" rel="nofollow"><i class="fa fa-pie-chart fa-2x"></i> {% trans %}Statistics{% endtrans %}</a>

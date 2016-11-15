@@ -69,15 +69,19 @@ class Stats
 
     public function getAverageTimeByTasks($taches) {
 
-        $nbr_taches = empty($taches) ? count($taches) : 1;
+        $nbr_taches = !empty($taches) ? count($taches) : 1;
         $moyenne = 0;
+        $avgPrevu = 0;
 
         foreach($taches as $tache) {
             $moyenne += $tache->getTempsPasses();
+            $avgPrevu += $tache->getTempsPrevu();
 
         }
 
-        return $nbr_taches ? floor($moyenne / $nbr_taches) : 0;
+        if($nbr_taches) {
+            return array("moyenne"=>floor($moyenne / $nbr_taches),"avgPrevu"=>floor($avgPrevu / $nbr_taches));
+        }
 
     }
 

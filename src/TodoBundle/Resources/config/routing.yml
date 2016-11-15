@@ -12,6 +12,9 @@ todo_taches_projet:
     defaults: { _controller: TodoBundle:Projet:setProjetInSession }
     requirements:
         projet: \d+
+todo_change_current_project:
+    path: /change-projet-courant
+    defaults: { _controller: TodoBundle:Projet:changeCurrentProject }
 #route Etat
 todo_create_etat:
     path:     creation-etat
@@ -44,6 +47,23 @@ todo_tache_blocked:
     defaults: { _controller: TodoBundle:Task:blocked, tache:0 }
     requirements:
         tache: \d+
+
+#route Pages
+todo_corbeille:
+    path:     /corbeille
+    defaults: { _controller: TodoBundle:Corbeille:corbeille }
+todo_delete_from_corbeille:
+    path:     /supprimer-tache-definitivement/{idtache}
+    defaults: { _controller: TodoBundle:Corbeille:delete }
+    requirements:
+        _method: GET
+        idtache: \d+
+todo_return_from_corbeille:
+    path:     /reouverture-tache/{idtache}
+    defaults: { _controller: TodoBundle:Corbeille:reopen }
+    requirements:
+        _method: GET
+        idtache: \d+
 
 #route Statistiques
 todo_statistiques_taches_terminees:

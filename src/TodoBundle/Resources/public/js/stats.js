@@ -11,4 +11,16 @@ $(document).ready(function(){
         type: 'doughnut',
         data: dataAvg
     });
+
+    var bars = $('#taskTime');
+    new Chart(bars, {
+        type: 'bar',
+        data: dataTasksBar
+    });
+
+    var complexity = $('#taskComplexity');
+    new Chart(complexity, {
+        type: 'bar',
+        data: dataComplexity
+    });
 });

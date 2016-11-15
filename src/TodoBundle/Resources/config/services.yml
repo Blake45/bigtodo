@@ -28,3 +28,8 @@ services:
         arguments:
             - '@doctrine.orm.entity_manager'
             - '@service_container'
+    todo_corbeille:
+        class: TodoBundle\Service\Corbeille
+        arguments:
+            - '@doctrine.orm.entity_manager'
+            - '@service_container'

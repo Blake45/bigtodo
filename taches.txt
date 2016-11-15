@@ -2,18 +2,14 @@ Taches:
 
 	Pages:
 		Page affichant les taches terminés
-			=> rapport de complexité des taches
 			=> nombre de user sur les taches par projet ou pas
-			=> pour chaque tache faire un graphique globale veracity, complexity
-			=> moyenne de temps par tache
-			=> display time erreur
 		Page affichant les autres taches
 		Page bilan tache projet
 		Page bilan tache developpeur
-		Page affichant les taches en corbeilles ==> a sortir du menu stats
 
 	Card Taches :
 		Méga tache => comprend des sous taches à afficher en modal listes de tache
+		Tables Tache_UserAssigned
 		modal tache pour afficher la description + details taches
 		changer la place du bouton déconnexion et afficher info du user
 		chrono weekend a arreter
@@ -25,26 +21,13 @@ Taches:
 
 Taches faites:
 
-	Creation
-	Etat:
-        formulaire creation etat
-    Déplacement ==> changement de statut et de couleur
-    	=> ajout d'une ligne dans etat_tache
-    	=> afficher les taches dans les bonnes colonnes
-    	etat precedent a setter
-    	Affichage du temps à améliorer => en jours, en heures , pas en secondes
-    	Retirer date picker, 3 selecteurs à la place
-    	impossible de supprimer tache avec un etat
-    	Tache terminé ==> effacer etattache et setter tempsPasse
-    	=> requete sql sur etat_tache => journée de 8h ou 7h (7h par défaut)
-    	Suppression taches / mis en corbeille
-    	Creation de tache si user connecté
-    	Statut en cours ==> chronomêtre sur la tache
-    Alert difficulté / Blocage
-    Afficher projet en cours
-    design statistiques
-
     Pages
     	Pages taches terminées
     		=> rapport entre temps prévu et temps réel
     		=> nombre de tache
+    		=> display time erreur
+    		=> moyenne de temps par tache
+    		=> pour chaque tache faire un graphique globale veracity, complexity
+    		=> rapport de complexité des taches
+    	Page affichant les taches en corbeilles ==> a sortir du menu stats
+    	Remove current_projet

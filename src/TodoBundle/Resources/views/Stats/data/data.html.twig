@@ -1,0 +1,52 @@
+<script type="text/javascript">
+    var dataVeracity = {
+        labels: [
+            "{% trans %}Veracity{% endtrans %} {{ veracity }}",
+            "{% trans %}Expected{% endtrans %} 1"
+        ],
+        datasets: [
+            {
+                data: [{{ veracity }},{{ 1- veracity }}],
+            }
+        ]
+    };
+    var dataAvg = {
+        labels: [
+            "{% trans %}Spent(s){% endtrans %} {{ displayTime(average['moyenne']) }}",
+            "{% trans %}Expected(s){% endtrans %} {{ displayTime(average['avgPrevu']) }}"
+        ],
+        datasets: [
+            {
+                data: [{{ average['moyenne'] }},{{ average['avgPrevu'] }}],
+            }
+        ]
+    };
+    var dataTasksBar = {
+        labels: [
+            "{% trans %}spent time{% endtrans %}","{% trans %}expected{% endtrans %}"
+        ],
+        datasets: [
+            {% for tache in endedTasks %}
+            {
+                type:"bar",
+                label:"{{ tache.nom }}",
+                data:[{{ tache.tempsPasses }},{{ tache.tempsPrevu }}]
+            },
+            {% endfor %}
+        ]
+    };
+    var dataComplexity = {
+        labels: [
+            "{% trans %}complexity{% endtrans %}"
+        ],
+        datasets: [
+            {% for tache in endedTasks %}
+            {
+                type:"bar",
+                label:"{{ tache.nom }}",
+                data:[{{ tache.complexity }}]
+            },
+            {% endfor %}
+        ]
+    };
+</script>

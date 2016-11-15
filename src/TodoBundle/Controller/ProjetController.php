@@ -71,4 +71,22 @@ class ProjetController extends Controller
         return $this->redirect($this->generateUrl("todo_homepage"));
     }
 
+
+    /**
+     * Remove the current project from the session
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function changeCurrentProjectAction(Request $request) {
+
+        $session = $this->get('session');
+        $current_project = $session->get('current_project');
+
+        if(!is_null($current_project)) {
+            $session->remove('current_project');
+        }
+
+        return $this->redirect($this->generateUrl("todo_homepage"));
+    }
+
 }

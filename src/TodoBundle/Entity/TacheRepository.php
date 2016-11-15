@@ -24,6 +24,7 @@ class TacheRepository extends EntityRepository
         $query = $this->createQueryBuilder("tache")
             ->select("tache")
             ->where("tache.etat = :etat")
+            ->andWhere("tache.encorbeille <> 1")
             ->setParameter("etat",$etat);
 
         if($etat->getNom() == "A faire") {
