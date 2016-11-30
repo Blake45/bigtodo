@@ -1,11 +1,11 @@
 Taches:
 
+    MySQL => PostGreSQL
+
 	Pages:
-		Page affichant les taches terminés
-			=> nombre de user sur les taches par projet ou pas
-		Page affichant les autres taches
 		Page bilan tache projet
 		Page bilan tache developpeur
+		Page affichant les autres taches
 
 	Card Taches :
 		Méga tache => comprend des sous taches à afficher en modal listes de tache
@@ -31,3 +31,5 @@ Taches faites:
     		=> rapport de complexité des taches
     	Page affichant les taches en corbeilles ==> a sortir du menu stats
     	Remove current_projet
+    	Page affichant les taches terminés => a mettre dans la page stats sur les taches terminées
+        			=> nombre de user sur les taches par projet ou pas

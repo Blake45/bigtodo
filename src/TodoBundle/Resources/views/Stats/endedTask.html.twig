@@ -53,6 +53,7 @@
                     </span>
                     <span class="card-title">{{ tache.nom }}</span>
                     <p class="truncate">{{ tache.description }}</p>
+                    <p>{% trans %} Users:{% endtrans %} {{ tache.userAssigned|length }}</p>
                 </div>
             </div>
         {% endfor %}
