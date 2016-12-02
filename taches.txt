@@ -1,6 +1,11 @@
 Taches:
 
     MySQL => PostGreSQL
+    projet a mettre sur Heroku
+
+    Design:
+    		Pouvoir changer de couleur de fond
+    		Changement couleur
 
 	Pages:
 		Page bilan tache projet
@@ -13,10 +18,6 @@ Taches:
 		modal tache pour afficher la description + details taches
 		changer la place du bouton déconnexion et afficher info du user
 		chrono weekend a arreter
-
-	Design:
-		Pouvoir changer de couleur de fond
-		Changement couleur
 
 
 Taches faites:

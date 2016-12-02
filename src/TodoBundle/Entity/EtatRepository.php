@@ -22,10 +22,10 @@ class EtatRepository extends EntityRepository
         $conn = $this->getEntityManager()->getConnection();
 
         $sql = "
-            INSERT INTO etat (nom) VALUES ('A faire');
-            INSERT INTO etat (nom) VALUES ('En cours');
-            INSERT INTO etat (nom) VALUES ('Terminé');
-            INSERT INTO etat (nom) VALUES ('En attente');
+            INSERT INTO etat (id,nom) VALUES (1,'A faire');
+            INSERT INTO etat (id,nom) VALUES (2,'En cours');
+            INSERT INTO etat (id,nom) VALUES (3,'Terminé');
+            INSERT INTO etat (id,nom) VALUES (4,'En attente');
         ";
 
         $sqls = explode(";",trim($sql));
