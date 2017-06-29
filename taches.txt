@@ -19,6 +19,8 @@ Taches:
 		changer la place du bouton déconnexion et afficher info du user
 		chrono weekend a arreter
 
+    Command :
+        export xml, csv de données
 
 Taches faites:
 
