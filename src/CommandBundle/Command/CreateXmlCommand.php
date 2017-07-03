@@ -8,9 +8,11 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Question\ChoiceQuestion;
 use Symfony\Component\Console\Question\Question;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Serializer\Encoder\XmlEncoder;
 
 class CreateXmlCommand extends Command
@@ -21,6 +23,7 @@ class CreateXmlCommand extends Command
     private $input;
     private $output;
     private $helper;
+    private $aXml;
 
     protected function configure()
     {
@@ -37,6 +40,7 @@ class CreateXmlCommand extends Command
         $this->output = $output;
         $this->type = $this->input->getArgument('type');
         $this->helper = $this->getHelper('question');
+        $this->aXml = array();
 
 
         if ($this->type == 'image') {
@@ -50,11 +54,11 @@ class CreateXmlCommand extends Command
             foreach (range(1,$nombre_produits) as $i) {
                 $qRepertoire =  new Question("Chemin du dossier images : ");
                 $chemin_images = $this->getAnswer($this->helper, $qRepertoire);
-                $images = $this->getImages($chemin_images);
-                $image_node = $this->buildData($images);
-                var_dump($this->serializer->encode($image_node, 'UTF-8'));
-
+                $images = $this->askWichImages($chemin_images);
+                $this->aXml ['images'][] = $this->buildData($images);
             }
+
+            var_dump($this->serializer->encode($this->aXml, "UTF-8"));
 
         }
     }
@@ -72,6 +76,23 @@ class CreateXmlCommand extends Command
         return $images;
     }
 
+    public function askWichImages($dir_img)
+    {
+        $liste_images = $this->getImages($dir_img);
+
+        $question = new ChoiceQuestion("Quels images souhaitez vous ajouter au produit ? ", $liste_images);
+        $question->setMultiselect(true);
+        $question->setErrorMessage("Veuillez choisir une image dans la liste bon sang!");
+
+        $images = $this->helper->ask($this->input, $this->output, $question);
+        $this->output->writeln("Vous avez choisi ces images " . implode(", ", $images));
+
+        $files = array();
+        foreach ($images as $path_image) {
+            $files [] = new File($path_image);
+        }
+        return $files;
+    }
 
     public function buildData($aFiles)
     {
@@ -84,7 +105,7 @@ class CreateXmlCommand extends Command
         }
     }
 
-    private function addFaceNode(SplFileInfo $image, $server_path = '/tmp/')
+    private function addFaceNode(File $image, $server_path = '/tmp/')
     {
         $qFace = new Question("Quel est la face de l'image ? ");
         $face = $this->getAnswer($this->helper, $qFace);
@@ -112,16 +133,16 @@ class CreateXmlCommand extends Command
                         "@seqmode" => $seqmode,
                         "@seqrefer" => $seqrefer,
                         "@desc" => $nomProduit,
-                        $faces
+                        "face" => $faces
                     )
         );
 
-        var_dump($image);
         return $image;
     }
 
     private function getAnswer($helper, $question)
     {
+        $this->output->writeln(get_class($helper));
         if (!$answer = $helper->ask($this->input, $this->output, $question)) {
             exit;
         }
